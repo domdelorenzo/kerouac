@@ -26,7 +26,7 @@ Kerouac provides:
 TBD
 
 ***
-### Technologies Used (MERN)
+### ***Technologies Used (MERN)***
 
 This project uses the following technologies
 
@@ -37,7 +37,7 @@ This project uses the following technologies
 - [Create React App](https://github.com/facebook/create-react-app) for bootstrapping client
 - [React-Markdown](https://github.com/remarkjs/react-markdown) for markdown parsing
 
-### Project Status
+### ***Project Status***
 
 Refer to the project's [Trello page](https://trello.com/b/08z798iH/markdown-editor)
 
