@@ -36,6 +36,7 @@ This project uses the following technologies
 - [Node.js](https://nodejs.org/en/) for server
 - [Create React App](https://github.com/facebook/create-react-app) for bootstrapping client
 - [React-Markdown](https://github.com/remarkjs/react-markdown) for markdown parsing
+- [Prosemirror](https://github.com/ProseMirror/prosemirror) for rich text editing
 
 ### ***Project Status***
 
