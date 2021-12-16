@@ -3,7 +3,7 @@ import SidePane from '../components/SidePane';
 import Content from '../components/Content';
 export default function Editor(props) {
   return (
-    <div>
+    <div className="editor-container">
       <div className="side-pane-container">
         <SidePane />
       </div>

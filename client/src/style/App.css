@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.editor-container {
+  display: flex;
+  flex-direction: row;
+  height: 90vmin;
+}
+
+.side-pane-container{
+  color:white;
+  background-color: #61dafb;
+  width: 25%;
+  height: 100%;
+}
+
+.content-container{
+  color:white;
+  background-color: #282c34;
+  width: 75%;
+  height: 100%;
+}
