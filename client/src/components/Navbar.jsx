@@ -22,6 +22,11 @@ export default function Header() {
         >
           Editor
           </Link>
+        <Link to="/prosemirror" >
+        Prosemirror
+        </Link>
+        <Link to="/reactrichmd">RichMD</Link>
+        <Link to="/remirror">Remirror</Link>
       </nav>
     </header>
   );

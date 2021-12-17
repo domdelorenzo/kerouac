@@ -4,6 +4,7 @@ import SidePane from '../components/SidePane';
 import React, { useMemo, useState } from 'react';
 import { createEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
+import DocPanel from '../components/DocPanel';
 
 export default function Editor() {
   const editor = useMemo(() => withReact(createEditor()), []);
@@ -20,13 +21,14 @@ export default function Editor() {
       </div>
       <div className="content-container">
         {/* <Content /> */}
-        <Slate
+        <DocPanel />
+        {/* <Slate
           editor={editor}
           value={value}
           onChange={(newValue) => setValue(newValue)}
         >
           <Editable className="slateBox" />
-        </Slate>
+        </Slate> */}
       </div>
     </div>
   );

@@ -7,6 +7,9 @@ import Login from './pages/Login';
 import Editor from './pages/Editor';
 import NavBar from './components/Navbar';
 import Home from './pages/Home';
+// import ReactProsemirror from './pages/ReactProsemirror';
+// import ReactRichMD from './pages/React-Rich-Markdown';
+import Remirror from './pages/Remirror';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/editor" element={<Editor />} />
+          {/* <Route path="/reactrichmd" element={<ReactRichMD />} />
+          <Route path="/prosemirror" element={<ReactProsemirror />} /> */}
+          <Route path="/remirror" element={<Remirror />} />
         </Routes>
       </main>
     </div>
