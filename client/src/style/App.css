@@ -52,7 +52,13 @@
 
 .content-container{
   color:white;
-  background-color: #282c34;
+  background-color: #c0c1c2;
   width: 75%;
   height: 100%;
+}
+
+.slateBox{
+  z-index: 2;
+  height:200px;
+  width:400px;
 }

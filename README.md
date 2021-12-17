@@ -37,6 +37,7 @@ This project uses the following technologies
 - [Create React App](https://github.com/facebook/create-react-app) for bootstrapping client
 - [React-Markdown](https://github.com/remarkjs/react-markdown) for markdown parsing
 - [Prosemirror](https://github.com/ProseMirror/prosemirror) for rich text editing
+- [Slate](https://github.com/ianstormtaylor/slate) for rich text editing and rendering
 
 ### ***Project Status***
 
