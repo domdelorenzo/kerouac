@@ -51,8 +51,8 @@
 }
 
 .content-container{
-  color:white;
-  background-color: #c0c1c2;
+  color:rgb(80, 80, 80);
+  background-color: #f7f7f7;
   width: 75%;
   height: 100%;
 }
@@ -63,7 +63,7 @@
   width:400px;
 }
 
-/* Prosemirror Toolebar styling */
+/* Prosemirror Toolbar styling */
 .prosemirror-toolbar {
   --toolbar-color: #000;
   --toolbar-color-hover: #00000022;
@@ -147,4 +147,9 @@
 
 .remirror-editor {
   text-align: left;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
 }

@@ -35,9 +35,10 @@ This project uses the following technologies
 - [React.js](https://reactjs.org) for client, [React Router](https://reacttraining.com/react-router/) for routing & [Redux](https://redux.js.org/basics/usagewithreact) for state management
 - [Node.js](https://nodejs.org/en/) for server
 - [Create React App](https://github.com/facebook/create-react-app) for bootstrapping client
-- [React-Markdown](https://github.com/remarkjs/react-markdown) for markdown parsing
-- [Prosemirror](https://github.com/ProseMirror/prosemirror) for rich text editing
-- [Slate](https://github.com/ianstormtaylor/slate) for rich text editing and rendering
+- ~~[React-Markdown](https://github.com/remarkjs/react-markdown) for markdown parsing~~
+- ~~[Prosemirror](https://github.com/ProseMirror/prosemirror) for rich text editing~~
+- [Remirror](https://github.com/remirror/remirror) for rich text editing
+- ~~[Slate](https://github.com/ianstormtaylor/slate) for rich text editing and rendering~~
 
 ### ***Project Status***
 
