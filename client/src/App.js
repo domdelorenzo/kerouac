@@ -10,6 +10,8 @@ import Home from './pages/Home';
 // import ReactProsemirror from './pages/ReactProsemirror';
 // import ReactRichMD from './pages/React-Rich-Markdown';
 import Remirror from './pages/Remirror';
+import SlateEditor from './pages/Slate';
+import PlateEditor from './pages/Plate';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           {/* <Route path="/reactrichmd" element={<ReactRichMD />} />
           <Route path="/prosemirror" element={<ReactProsemirror />} /> */}
           <Route path="/remirror" element={<Remirror />} />
+          <Route path="/slate" element={<SlateEditor />} />
+          <Route path="/Plate" element={<PlateEditor />} />
         </Routes>
       </main>
     </div>
