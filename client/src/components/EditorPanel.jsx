@@ -1,26 +1,19 @@
 // import '../example.css';
-import React, {useCallback } from 'react';
+import React, {useCallback, useState } from 'react';
 import { Remirror, useHelpers, useKeymap, useRemirror } from '@remirror/react';
-import { BoldExtension } from 'remirror/extensions';
+import { 
+  BoldExtension, 
+  ItalicExtension, 
+  BlockquoteExtension, 
+  ListItemExtension, 
+  BulletListExtension,
+  OrderedListExtension,
+  TaskListExtension,
+  TaskListItemExtension,
+  MarkdownExtension, MarkdownOptions } from 'remirror/extensions';
 import { MarkdownEditor } from '@remirror/react-editors/markdown';
-
-
-// function MarkdownPreview() {
-
-//   const { getMarkdown } = useHelpers(true);
-
-//   return (
-
-//     <pre>
-
-//       <code>{getMarkdown()}</code>
-
-//     </pre>
-
-//   );
-
-// }
-
+import { EditorComponent } from '@remirror/react-core';
+import test from '../Data/test.json'
 const hooks = [
   () => {
     const { getJSON } = useHelpers();
@@ -39,19 +32,96 @@ const hooks = [
   },
 ];
 
+const starterText = test
+
+// {"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","text":"This is my list"}]},{"type":"orderedList","attrs":{"order":1},"content":[{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"item"}]}]},{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"item"}]}]},{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"item"}]}]}]},{"type":"paragraph","content":[{"type":"text","text":"This is an unordered list"}]},{"type":"bulletList","content":[{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"bullet"}]}]},{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"bullet"}]}]},{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"dash"}]}]}]},{"type":"paragraph"},{"type":"taskList","content":[{"type":"taskListItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"task list item"}]}]},{"type":"taskListItem","attrs":{"checked":true},"content":[{"type":"paragraph","content":[{"type":"text","text":"checked!"}]}]}]}]}
+
 const EditorPanel = () => {
-  const { manager, state } = useRemirror({ extensions: () => [new BoldExtension()] });
+  const { manager, state } = useRemirror({ extensions: () => [
+    new BoldExtension(), 
+    new ItalicExtension(), 
+    new BlockquoteExtension(), 
+    new ListItemExtension(),
+    new BulletListExtension(),
+    new OrderedListExtension(),
+    new TaskListExtension(),
+    new TaskListItemExtension()
+  ],
+  content: starterText,
+  // selection: 'start,
+  stringHandler:'json' 
+});
+  // const { manager, state } = useRemirror({
+  //   extensions: () => [new BoldExtension()],
+  //   content: '<p>I love <b>Remirror</b></p>',
+  //   selection: 'start',
+  //   stringHandler: 'html',
+  // });
   return (
-    <div>
-      <Remirror manager={manager} initialContent={state} hooks={hooks}
-      />
-      
-    </div>
+  
+      <Remirror manager={manager} initialContent={state} hooks={hooks}>
+        {/* <EditorComponent /> */}
+      </Remirror>
     
-    // <MarkdownEditor placeholder="Start typing...">
+    // <MarkdownEditor 
+    // // initialContent={state}
+    //     manager={manager} 
+    //     hooks={hooks} 
+    //     // placeholder="Start typing..."
+    //     >
     //   {/* <MarkdownPreview /> */}
     // </MarkdownEditor>
   );
 };
+
+
+
+
+/* Saving functionality
+
+async saveContent = ()=> {
+  // Fake API call
+  return new Promise(resolve=>{
+    settimeout(()=>{
+      resolve('resolved');
+    }, 2000)
+  })
+  await delay(1000);
+}
+
+interface UseSaveHook {
+  saving: boolean;
+  error: Error | undefined;
+}
+
+// Create a hook which saves the content as markdown whenever `Ctrl-s` on Mac `Cmd-s` is pressed.
+function useSaveHook() {
+  const helpers = useHelpers();
+  const [state, setState] = useState<UseSaveHook>({ saving: false, error: undefined });
+
+  useKeymap(
+    'Mod-s',
+    useCallback(() => {
+      // Convert the editor content to markdown.
+      const markdown = helpers.getMarkdown();
+
+      setState({ saving: true, error: undefined });
+
+      saveContent(markdown)
+        .then(() => {
+          setState({ saving: false, error: undefined });
+        })
+        .catch((error) => {
+          setState({ saving: true, error });
+        });
+
+      return true;
+    }, [helpers]),
+  );
+
+  return state;
+}
+
+*/
 
 export default EditorPanel;

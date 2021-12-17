@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Remirror from './pages/Remirror';
 import SlateEditor from './pages/Slate';
 import PlateEditor from './pages/Plate';
+import Prosemirror from './pages/Prosemirror.js';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/editor" element={<Editor />} />
           {/* <Route path="/reactrichmd" element={<ReactRichMD />} />
           <Route path="/prosemirror" element={<ReactProsemirror />} /> */}
+          <Route path="/prosemirror" element={<Prosemirror />} /> */}
           <Route path="/remirror" element={<Remirror />} />
           <Route path="/slate" element={<SlateEditor />} />
           <Route path="/Plate" element={<PlateEditor />} />
