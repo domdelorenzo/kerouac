@@ -36,6 +36,8 @@ import {
   Element as SlateElement
 } from 'slate';
 import { withHistory } from 'slate-history';
+import isHotkey from 'is-hotkey';
+
 const SHORTCUTS = {
   '*': 'list-item',
   '-': 'list-item',
@@ -55,6 +57,21 @@ const HOTKEYS = {
   'mod+u': 'underline',
   'mod+`': 'code'
 };
+
+const toggleMark = (editor, format) => {
+  const isActive = isMarkActive(editor, format);
+
+  if (isActive) {
+    Editor.removeMark(editor, format);
+  } else {
+    Editor.addMark(editor, format, true);
+  }
+};
+const isMarkActive = (editor, format) => {
+  const marks = Editor.marks(editor);
+  return marks ? marks[format] === true : false;
+};
+
 const SlateEditor = () => {
   const [value, setValue] = useState(
     JSON.parse(localStorage.getItem('content')) || initialValue
@@ -63,6 +80,7 @@ const SlateEditor = () => {
     (props) => React.createElement(Element, Object.assign({}, props)),
     []
   );
+  const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(
     () => withShortcuts(withReact(withHistory(createEditor()))),
     []
@@ -104,39 +122,37 @@ const SlateEditor = () => {
     >
       <Editable
         renderElement={renderElement}
+        renderLeaf={renderLeaf}
         placeholder="Write some markdown..."
         spellCheck
         autoFocus
-        // onChange={(value) => {
-        //   setValue(value);
-        //   const isNewChange = editor.operations.some(
-        //     (op) => 'set_selection' !== op.type
-        //   );
-        //   if (isNewChange) {
-        //     //save value to Local Storage
-        //     const content = JSON.stringify(value);
-        //     console.log(content);
-        //     localStorage.setItem('content', content);
-        //   }
-        // }}
         onKeyDown={(event) => {
-          const content = JSON.stringify(value);
-          if (!event.ctrlKey) {
-            return;
-          }
-          switch (event.key) {
-            case 'b': {
+          for (const hotkey in HOTKEYS) {
+            if (isHotkey(hotkey, event)) {
               event.preventDefault();
-              editor.toggleBoldMark(editor);
-              break;
-            }
-            case 's': {
-              event.preventDefault();
-              console.log(content);
-              break;
+              const mark = HOTKEYS[hotkey];
+              toggleMark(editor, mark);
             }
           }
         }}
+        // onKeyDown={(event) => {
+        //   const content = JSON.stringify(value);
+        //   if (!event.ctrlKey) {
+        //     return;
+        //   }
+        //   switch (event.key) {
+        //     case 'b': {
+        //       event.preventDefault();
+        //       editor.toggleBoldMark(editor);
+        //       break;
+        //     }
+        //     case 's': {
+        //       event.preventDefault();
+        //       console.log(content);
+        //       break;
+        //     }
+        //   }
+        // }}
       />
     </Slate>
   );
@@ -217,33 +233,51 @@ const withShortcuts = (editor) => {
   };
   return editor;
 };
+
 const Element = ({ attributes, children, element }) => {
   switch (element.type) {
     case 'block-quote':
-      return React.createElement(
-        'blockquote',
-        Object.assign({}, attributes),
-        children
-      );
+      return <blockquote {...attributes}>{children}</blockquote>;
     case 'bulleted-list':
-      return React.createElement('ul', Object.assign({}, attributes), children);
+      return <ul {...attributes}>{children}</ul>;
     case 'heading-one':
-      return React.createElement('h1', Object.assign({}, attributes), children);
+      return <h1 {...attributes}>{children}</h1>;
     case 'heading-two':
-      return React.createElement('h2', Object.assign({}, attributes), children);
+      return <h2 {...attributes}>{children}</h2>;
     case 'heading-three':
-      return React.createElement('h3', Object.assign({}, attributes), children);
+      return <h3 {...attributes}>{children}</h3>;
     case 'heading-four':
-      return React.createElement('h4', Object.assign({}, attributes), children);
+      return <h4 {...attributes}>{children}</h4>;
     case 'heading-five':
-      return React.createElement('h5', Object.assign({}, attributes), children);
+      return <h5 {...attributes}>{children}</h5>;
     case 'heading-six':
-      return React.createElement('h6', Object.assign({}, attributes), children);
+      return <h6 {...attributes}>{children}</h6>;
     case 'list-item':
-      return React.createElement('li', Object.assign({}, attributes), children);
+      return <li {...attributes}>{children}</li>;
+    case 'numbered-list':
+      return <ol {...attributes}>{children}</ol>;
     default:
-      return React.createElement('p', Object.assign({}, attributes), children);
+      return <p {...attributes}>{children}</p>;
   }
+};
+const Leaf = ({ attributes, children, leaf }) => {
+  if (leaf.bold) {
+    children = <strong>{children}</strong>;
+  }
+
+  if (leaf.code) {
+    children = <code>{children}</code>;
+  }
+
+  if (leaf.italic) {
+    children = <em>{children}</em>;
+  }
+
+  if (leaf.underline) {
+    children = <u>{children}</u>;
+  }
+
+  return <span {...attributes}>{children}</span>;
 };
 const initialValue = [
   {
