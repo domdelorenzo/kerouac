@@ -25,7 +25,7 @@ export default function Header() {
         <Link to="/prosemirror" >
         Prosemirror
         </Link>
-        <Link to="/reactrichmd">RichMD</Link>
+        <Link to="/reactrichmd">React Rich Markdown</Link>
         <Link to="/slate">Slate</Link>
         <Link to="/tiptap">TipTap</Link>
         <Link to="/remirror">Remirror</Link>

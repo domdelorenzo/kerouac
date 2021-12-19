@@ -8,7 +8,7 @@ import Editor from './pages/Editor';
 import NavBar from './components/Navbar';
 import Home from './pages/Home';
 // import ReactProsemirror from './pages/ReactProsemirror';
-// import ReactRichMD from './pages/React-Rich-Markdown';
+import ReactRichMD from './pages/React-Rich-Markdown';
 import Remirror from './pages/Remirror';
 import SlateEditor from './pages/Slate';
 import PlateEditor from './pages/Plate';
@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/editor" element={<Editor />} />
-          {/* <Route path="/reactrichmd" element={<ReactRichMD />} /> */}
+          <Route path="/reactrichmd" element={<ReactRichMD />} />
           {/* <Route path="/prosemirror" element={<ReactProsemirror />} /> */}
           {/* <Route path="/prosemirror" element={<Prosemirror />} /> */}
           <Route path="/remirror" element={<Remirror />} />
