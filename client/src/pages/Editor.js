@@ -3,6 +3,8 @@ import SidePane from '../components/SidePane';
 import Content from '../components/Content';
 import EditorPanel from '../components/EditorPanel';
 
+import '@remirror/styles/all.css';
+
 export default function Editor() {
   return (
     <div className="editor-container">

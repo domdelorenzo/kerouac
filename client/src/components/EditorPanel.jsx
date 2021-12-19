@@ -14,6 +14,10 @@ import {
 import { MarkdownEditor } from '@remirror/react-editors/markdown';
 import { EditorComponent } from '@remirror/react-core';
 import test from '../Data/test.json'
+
+
+
+
 const hooks = [
   () => {
     const { getJSON } = useHelpers();
@@ -21,7 +25,8 @@ const hooks = [
     const handleSaveShortcut = useCallback(
       ({ state }) => {
         console.log(`Save to backend: ${JSON.stringify(getJSON(state))}`);
-
+        const filedata = JSON.stringify(getJSON(state))
+        
         return true; // Prevents any further key handlers from being run.
       },
       [getJSON],
@@ -34,7 +39,6 @@ const hooks = [
 
 const starterText = test
 
-// {"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","text":"This is my list"}]},{"type":"orderedList","attrs":{"order":1},"content":[{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"item"}]}]},{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"item"}]}]},{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"item"}]}]}]},{"type":"paragraph","content":[{"type":"text","text":"This is an unordered list"}]},{"type":"bulletList","content":[{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"bullet"}]}]},{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"bullet"}]}]},{"type":"listItem","attrs":{"closed":false,"nested":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"dash"}]}]}]},{"type":"paragraph"},{"type":"taskList","content":[{"type":"taskListItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"task list item"}]}]},{"type":"taskListItem","attrs":{"checked":true},"content":[{"type":"paragraph","content":[{"type":"text","text":"checked!"}]}]}]}]}
 
 const EditorPanel = () => {
   const { manager, state } = useRemirror({ extensions: () => [
@@ -68,6 +72,7 @@ const EditorPanel = () => {
     //     manager={manager} 
     //     hooks={hooks} 
     //     // placeholder="Start typing..."
+    //     placeholder={test}
     //     >
     //   {/* <MarkdownPreview /> */}
     // </MarkdownEditor>

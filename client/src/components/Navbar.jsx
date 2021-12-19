@@ -26,7 +26,10 @@ export default function Header() {
         Prosemirror
         </Link>
         <Link to="/reactrichmd">RichMD</Link>
+        <Link to="/slate">Slate</Link>
+        <Link to="/tiptap">TipTap</Link>
         <Link to="/remirror">Remirror</Link>
+
       </nav>
     </header>
   );

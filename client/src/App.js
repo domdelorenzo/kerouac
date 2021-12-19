@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './style/App.css';
 
 import { Route, Routes } from 'react-router-dom';
@@ -12,7 +12,11 @@ import Home from './pages/Home';
 import Remirror from './pages/Remirror';
 import SlateEditor from './pages/Slate';
 import PlateEditor from './pages/Plate';
-import Prosemirror from './pages/Prosemirror.js';
+// import Prosemirror from './pages/Prosemirror.js';
+// import Accord from './pages/Accord';
+import TipEditor from './pages/TipEditor';
+
+// import '@remirror/styles/all.css';
 
 function App() {
   return (
@@ -23,12 +27,14 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/editor" element={<Editor />} />
-          {/* <Route path="/reactrichmd" element={<ReactRichMD />} />
-          <Route path="/prosemirror" element={<ReactProsemirror />} /> */}
-          <Route path="/prosemirror" element={<Prosemirror />} /> */}
+          {/* <Route path="/reactrichmd" element={<ReactRichMD />} /> */}
+          {/* <Route path="/prosemirror" element={<ReactProsemirror />} /> */}
+          {/* <Route path="/prosemirror" element={<Prosemirror />} /> */}
           <Route path="/remirror" element={<Remirror />} />
           <Route path="/slate" element={<SlateEditor />} />
           <Route path="/Plate" element={<PlateEditor />} />
+          {/* <Route path="/accord" element={<Accord />} /> */}
+          <Route path="/tiptap" element={<TipEditor />} />
         </Routes>
       </main>
     </div>
