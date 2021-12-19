@@ -48,8 +48,17 @@ const SHORTCUTS = {
   '#####': 'heading-five',
   '######': 'heading-six'
 };
+
+const HOTKEYS = {
+  'mod+b': 'bold',
+  'mod+i': 'italic',
+  'mod+u': 'underline',
+  'mod+`': 'code'
+};
 const SlateEditor = () => {
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(
+    JSON.parse(localStorage.getItem('content')) || initialValue
+  );
   const renderElement = useCallback(
     (props) => React.createElement(Element, Object.assign({}, props)),
     []
@@ -58,15 +67,78 @@ const SlateEditor = () => {
     () => withShortcuts(withReact(withHistory(createEditor()))),
     []
   );
-  return React.createElement(
-    Slate,
-    { editor: editor, value: value, onChange: (value) => setValue(value) },
-    React.createElement(Editable, {
-      renderElement: renderElement,
-      placeholder: 'Write some markdown...',
-      spellCheck: true,
-      autoFocus: true
-    })
+  return (
+    <Slate
+      editor={editor}
+      value={value}
+      onChange={(value) => {
+        setValue(value);
+        const isNewChange = editor.operations.some(
+          (op) => 'set_selection' !== op.type
+        );
+        if (isNewChange) {
+          //save value to Local Storage
+          const content = JSON.stringify(value);
+          console.log(content);
+          localStorage.setItem('content', content);
+        }
+      }}
+      onKeyDown={(event) => {
+        const content = JSON.stringify(value);
+        if (!event.ctrlKey) {
+          return;
+        }
+        switch (event.key) {
+          case 'b': {
+            event.preventDefault();
+            editor.toggleBoldMark(editor);
+            break;
+          }
+          case 's': {
+            event.preventDefault();
+            console.log(content);
+            break;
+          }
+        }
+      }}
+    >
+      <Editable
+        renderElement={renderElement}
+        placeholder="Write some markdown..."
+        spellCheck
+        autoFocus
+        // onChange={(value) => {
+        //   setValue(value);
+        //   const isNewChange = editor.operations.some(
+        //     (op) => 'set_selection' !== op.type
+        //   );
+        //   if (isNewChange) {
+        //     //save value to Local Storage
+        //     const content = JSON.stringify(value);
+        //     console.log(content);
+        //     localStorage.setItem('content', content);
+        //   }
+        // }}
+        onKeyDown={(event) => {
+          const content = JSON.stringify(value);
+          if (!event.ctrlKey) {
+            return;
+          }
+          switch (event.key) {
+            case 'b': {
+              event.preventDefault();
+              editor.toggleBoldMark(editor);
+              break;
+            }
+            case 's': {
+              event.preventDefault();
+              console.log(content);
+              break;
+            }
+          }
+        }}
+      />
+    </Slate>
   );
 };
 const withShortcuts = (editor) => {
