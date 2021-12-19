@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import SidePane from '../components/SidePane';
 import Content from '../components/Content';
-export default function Editor(props) {
+import EditorPanel from '../components/EditorPanel';
+
+import '@remirror/styles/all.css';
+
+export default function Editor() {
   return (
-    <div>
+    <div className="editor-container">
       <div className="side-pane-container">
         <SidePane />
       </div>
       <div className="content-container">
-        <Content />
+        <EditorPanel />
       </div>
     </div>
   );
