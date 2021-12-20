@@ -8,20 +8,10 @@ import DocumentList from '../components/DocumentList';
 
 import '@remirror/styles/all.css';
 
-export default function Editor() {
+const Editor = () => {
   // const [renderedDoc, setRenderedDoc] = useState('');
   const [docID, setdocID] = useState('');
-  const [initialValue, setInitialValue] = useState('');
-
-  // setdocID('61bfb6ee631ad13ebdefabe5');
-
-  // const loadDocument = async () => {
-  //   // const response = await axios.get(
-  //   //   `http://localhost:3001/api/document/${docID}`
-  //   // );
-  //   console.log(docID);
-  //   // console.log(response);
-  // };
+  const [initialValue, setInitialValue] = useState(defaultText);
 
   useEffect(() => {
     // console.log(docID);
@@ -29,15 +19,15 @@ export default function Editor() {
     // console.log(`DocumentID is ${docID}`);
     loadDocument();
     return;
-  });
+  }, [docID]);
 
   const loadDocument = async () => {
     const response = await axios.get(
       `http://localhost:3001/api/document/${docID}`
     );
     console.log(docID);
-    console.log(response.data.document.content);
-    setInitialValue(response.data.document);
+    // console.log(response.data.document.content);
+    setInitialValue(response.data.document.content);
     return;
   };
 
@@ -62,4 +52,41 @@ export default function Editor() {
       </div>
     </div>
   );
-}
+};
+
+const defaultText = [
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'The editor gives you full control over the logic you can add. For example, it\'s fairly common to want to add markdown-like shortcuts to editors. So that, when you start a line with "> " you get a blockquote that looks like this:'
+      }
+    ]
+  },
+  {
+    type: 'block-quote',
+    children: [{ text: 'A wise quote.' }]
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Order when you start a line with "## " you get a level-two heading, like this:'
+      }
+    ]
+  },
+  {
+    type: 'heading-two',
+    children: [{ text: 'Try it out!' }]
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Try it out for yourself! Try starting a new line with ">", "-", or "#"s.'
+      }
+    ]
+  }
+];
+
+export default Editor;

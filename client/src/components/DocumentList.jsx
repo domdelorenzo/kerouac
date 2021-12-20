@@ -9,8 +9,8 @@ const DocumentList = ({openDoc}) => {
 const [selectedID, setSelectedID] = useState('')
 const [documentlist, setDocumentlist] = useState([])
 const [ newdoc, setNewdoc] = useState({
-  name: '',
-  userID: 'ddeloren',
+  name: "",
+  userID: "ddeloren",
   content: []
 });
 
@@ -24,13 +24,15 @@ useEffect(()=> {
   getDocuments()
 },[])
 const handleChange = (e) => {
-  setNewdoc({[e.target.name]: e.target.value });
-  console.log({[e.target.name]: e.target.value });
+  setNewdoc({...newdoc, [e.target.name]: e.target.value });
+  console.log({...newdoc, [e.target.name]: e.target.value });
 };
 const createNewDoc = (e) => {
-  e.preventDefault()
+  e.preventDefault();
+  console.log('Triggering new document');
+  console.log(newdoc);
   axios.post('http://localhost:3001/api/documents',newdoc)
-  console.log('Triggering new document')
+
 }
 
 // const [docID, setDocID] = useState('')
@@ -42,7 +44,7 @@ const cardClick = (e) => {
     <div>
       {/* <button onClick={getDocuments}>Get documents</button> */}
       {/* Place new doc button here */}
-      <form onsubmit={createNewDoc}>
+      <form onSubmit={createNewDoc}>
         <input 
           type="text"
           placeholder="Title here"

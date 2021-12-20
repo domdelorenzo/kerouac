@@ -74,24 +74,11 @@ const isMarkActive = (editor, format) => {
 };
 
 const SlateComponent = (props) => {
-  
   const [docDetails, setDocDetails] = useState({
     name: 'First document',
     userID: 'ddeloren',
     content: []
   });
-  /* read document from api */
-
-
-  /* -- do I need a handle change for a keypress?
-  const handleChange = (e) => {
-    setDocDetails({ ...docDetails, [e.target.content]: e.target.value });
-    console.log({ ...docDetails, [e.target.content]: e.target.value });
-  };
-
-  */
-
-
   const writeDocument = () => {
     axios.put(
       'http://localhost:3001/api/document/61bfb6ee631ad13ebdefabe5',
@@ -100,12 +87,22 @@ const SlateComponent = (props) => {
     console.log('This is where we make a put request');
   };
 
-
-  // loadDocument();
+  // const [value, setValue] = useState(
+  //   JSON.parse(localStorage.getItem('content')) || initialValue
+  // );
+  let renderedText = defaultText
+  if (props.initialValue){
+    console.log(props.initialValue)
+    renderedText = props.initialValue 
+  } else {
+    // renderedText = defaultText
+    console.log('use default text')
+  }
   const [value, setValue] = useState(
-    JSON.parse(localStorage.getItem('content')) || initialValue
+    // props.initialValue || 
+    renderedText
   );
-
+  
   // const [value, setValue] = useState(
   //   JSON.parse({savedDoc});
   const renderElement = useCallback(
@@ -117,6 +114,13 @@ const SlateComponent = (props) => {
     () => withShortcuts(withReact(withHistory(createEditor()))),
     []
   );
+
+  useEffect(()=>{
+    setValue(props.initialValue)
+    console.log(`useEffect value is ${value}`)
+    console.log(value)
+  },[props.initialValue])
+
   return (
     <Slate
       editor={editor}
@@ -291,7 +295,7 @@ const Leaf = ({ attributes, children, leaf }) => {
 
   return <span {...attributes}>{children}</span>;
 };
-const initialValue = [
+const defaultText = [
   {
     type: 'paragraph',
     children: [
