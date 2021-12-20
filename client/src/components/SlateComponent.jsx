@@ -25,7 +25,7 @@
 
 // export default SlateEditor;
 import '../style/Slate.css';
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Slate, Editable, withReact } from 'slate-react';
 import {
   Editor,
@@ -73,21 +73,15 @@ const isMarkActive = (editor, format) => {
   return marks ? marks[format] === true : false;
 };
 
-const SlateComponent = () => {
+const SlateComponent = (props) => {
+  
   const [docDetails, setDocDetails] = useState({
     name: 'First document',
     userID: 'ddeloren',
     content: []
   });
   /* read document from api */
-  // const loadDocument = async () => {
-  //   const response = await axios.get(
-  //     'http://localhost:3001/api/document/name/First%20document'
-  //   );
-  //   console.log(response.data.document[0].content);
-  //   console.log(response.data.document[0].name);
-  //   let savedDoc = response.data.document[0].content;
-  // };
+
 
   /* -- do I need a handle change for a keypress?
   const handleChange = (e) => {
@@ -96,8 +90,9 @@ const SlateComponent = () => {
   };
 
   */
+
+
   const writeDocument = () => {
-    // e.preventDefault();
     axios.put(
       'http://localhost:3001/api/document/61bfb6ee631ad13ebdefabe5',
       docDetails

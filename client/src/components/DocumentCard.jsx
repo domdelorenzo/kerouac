@@ -5,7 +5,7 @@ const DocumentCard = (props) => {
 
   return (
     <div className="card" 
-    // onClick={props.onClick}
+    onClick={props.onClick}
     >
       <div className="info wrapper">
         <h3>{props.name}</h3>

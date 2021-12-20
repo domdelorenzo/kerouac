@@ -1,10 +1,12 @@
 import React, {useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import DocumentCard from './DocumentCard';
+import { propIsFunction } from '@remirror/react-utils';
+import { set } from 'mongoose';
 
 
-const DocumentList = () => {
-// make Axios call to get all documents
+const DocumentList = ({openDoc}) => {
+const [selectedID, setSelectedID] = useState('')
 const [documentlist, setDocumentlist] = useState([])
 const [ newdoc, setNewdoc] = useState({
   name: '',
@@ -30,6 +32,12 @@ const createNewDoc = (e) => {
   axios.post('http://localhost:3001/api/documents',newdoc)
   console.log('Triggering new document')
 }
+
+// const [docID, setDocID] = useState('')
+const cardClick = (e) => {
+  console.log('Click!')
+  // console.log(selectedID)
+}
   return (
     <div>
       {/* <button onClick={getDocuments}>Get documents</button> */}
@@ -50,6 +58,15 @@ const createNewDoc = (e) => {
           <DocumentCard
           key={doc._id}
           name={doc.name}
+          //pass prop to load doc
+          onClick={()=> {
+            openDoc(doc._id)
+            setSelectedID(doc._id);
+            cardClick()
+          }
+            }
+          // onClick={()=>{console.log(doc.name)}}
+          // onClick={()=>setDocID(doc.name)}
           // add button for deletion
         ></DocumentCard>
 
