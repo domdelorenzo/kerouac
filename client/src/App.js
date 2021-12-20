@@ -7,11 +7,11 @@ import Login from './pages/Login';
 import Editor from './pages/Editor';
 import NavBar from './components/Navbar';
 import Home from './pages/Home';
-import ReactRichMD from './pages/React-Rich-Markdown';
-import Remirror from './pages/Remirror';
+// import ReactRichMD from './pages/React-Rich-Markdown';
+// import Remirror from './pages/Remirror';
 import SlateEditor from './pages/Slate';
-import PlateEditor from './pages/Plate';
-import TipEditor from './pages/TipEditor';
+// import PlateEditor from './pages/Plate';
+// import TipEditor from './pages/TipEditor';
 
 // import '@remirror/styles/all.css';
 
@@ -24,11 +24,11 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/editor" element={<Editor />} />
-          <Route path="/reactrichmd" element={<ReactRichMD />} />
-          <Route path="/remirror" element={<Remirror />} />
+          {/* <Route path="/reactrichmd" element={<ReactRichMD />} /> */}
+          {/* <Route path="/remirror" element={<Remirror />} /> */}
           <Route path="/slate" element={<SlateEditor />} />
-          <Route path="/Plate" element={<PlateEditor />} />
-          <Route path="/tiptap" element={<TipEditor />} />
+          {/* <Route path="/Plate" element={<PlateEditor />} /> */}
+          {/* <Route path="/tiptap" element={<TipEditor />} /> */}
         </Routes>
       </main>
     </div>
