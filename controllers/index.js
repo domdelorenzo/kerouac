@@ -67,16 +67,19 @@ const getDocByID = async (req, res) => {
   } catch (error) {
     return res.status(500).send(error.message);
   }
-  // try {
-  //   const { id } = req.params;
-  //   const document = await Document.findById(id);
-  //   if (document) {
-  //     return res.status(200).json({ document });
-  //   }
-  //   return res.status(404).send(`I can't find a document with that ID`);
-  // } catch (error) {
-  //   return res.status(500).send(error.message);
-  // }
+};
+
+const deleteDoc = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await Document.findByIdAndDelete(id);
+    if (deleted) {
+      return res.status(200).send('Document deleted.');
+    }
+    throw new Error('Document not found');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
 };
 
 module.exports = {
@@ -84,5 +87,6 @@ module.exports = {
   updateDoc,
   createDoc,
   getDocByTitle,
-  getDocByID
+  getDocByID,
+  deleteDoc
 };

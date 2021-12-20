@@ -119,11 +119,13 @@ const SlateComponent = (props) => {
     setValue(props.initialValue)
     console.log(`useEffect value is ${value}`)
     console.log(value)
+    
   },[props.initialValue])
 
   return (
     <Slate
       editor={editor}
+      // change this to props.value to make it rerender
       value={value}
       onChange={(value) => {
         setValue(value);

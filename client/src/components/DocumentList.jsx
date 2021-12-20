@@ -35,6 +35,13 @@ const createNewDoc = (e) => {
 
 }
 
+
+  const deletefunc = (e) => {
+    e.preventDefault();
+    console.log('triggering delete')
+    console.log(e.target)
+  }
+
 // const [docID, setDocID] = useState('')
 const cardClick = (e) => {
   console.log('Click!')
@@ -60,17 +67,18 @@ const cardClick = (e) => {
           <DocumentCard
           key={doc._id}
           name={doc.name}
+          id={doc._id}
           //pass prop to load doc
           onClick={()=> {
             openDoc(doc._id)
             setSelectedID(doc._id);
             cardClick()
           }
+          
             }
-          // onClick={()=>{console.log(doc.name)}}
-          // onClick={()=>setDocID(doc.name)}
-          // add button for deletion
+            deletefunc={deletefunc}
         ></DocumentCard>
+        
 
         )
         )}

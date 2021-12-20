@@ -8,5 +8,6 @@ router.post('/documents', controllers.createDoc);
 router.put('/document/:id', controllers.updateDoc);
 router.get('/document/:id', controllers.getDocByID);
 router.get('/document/name/:title', controllers.getDocByTitle);
+router.delete('/document/:id', controllers.deleteDoc);
 
 module.exports = router;
