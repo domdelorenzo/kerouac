@@ -18,16 +18,19 @@ const updateDoc = async (req, res) => {
       { new: true },
       (err, document) => {
         if (err) {
-          res.status(500).send(err);
+          res.status(500);
+          console.log(err);
         }
         if (!document) {
-          res.status(500).send('No document found');
+          res.status(500);
+          console.log('No document found');
         }
         return res.status(200).json(document);
       }
     );
   } catch (Error) {
-    return res.status(500).send(error.message);
+    return res.status(500);
+    console.log(error.message);
   }
 };
 

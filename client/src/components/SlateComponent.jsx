@@ -37,6 +37,7 @@ import {
 } from 'slate';
 import { withHistory } from 'slate-history';
 import isHotkey from 'is-hotkey';
+import axios from 'axios';
 
 const SHORTCUTS = {
   '*': 'list-item',
@@ -55,7 +56,7 @@ const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
   'mod+u': 'underline',
-  'mod+`': 'code'
+  'mod+`': 'code',
 };
 
 const toggleMark = (editor, format) => {
@@ -73,6 +74,38 @@ const isMarkActive = (editor, format) => {
 };
 
 const SlateComponent = () => {
+  const [docDetails, setDocDetails] = useState({
+    name: 'First document',
+    userID: 'ddeloren',
+    content: []
+  });
+  /* read document from api */
+  // const loadDocument = async () => {
+  //   const response = await axios.get(
+  //     'http://localhost:3001/api/document/name/First%20document'
+  //   );
+  //   console.log(response.data.document[0].content);
+  //   console.log(response.data.document[0].name);
+  //   let savedDoc = response.data.document[0].content;
+  // };
+
+  /* -- do I need a handle change for a keypress?
+  const handleChange = (e) => {
+    setDocDetails({ ...docDetails, [e.target.content]: e.target.value });
+    console.log({ ...docDetails, [e.target.content]: e.target.value });
+  };
+
+  */
+  const writeDocument = () => {
+    // e.preventDefault();
+    axios.put(
+      'http://localhost:3001/api/document/61bfb6ee631ad13ebdefabe5',
+      docDetails
+    );
+    console.log('This is where we make a put request');
+  };
+
+
   // loadDocument();
   const [value, setValue] = useState(
     JSON.parse(localStorage.getItem('content')) || initialValue
@@ -102,25 +135,9 @@ const SlateComponent = () => {
           //save value to Local Storage
           const content = JSON.stringify(value);
           console.log(content);
+          setDocDetails({ ...docDetails, content: value});
+          console.log(docDetails)
           localStorage.setItem('content', content);
-        }
-      }}
-      onKeyDown={(event) => {
-        const content = JSON.stringify(value);
-        if (!event.ctrlKey) {
-          return;
-        }
-        switch (event.key) {
-          case 'b': {
-            event.preventDefault();
-            editor.toggleBoldMark(editor);
-            break;
-          }
-          case 's': {
-            event.preventDefault();
-            console.log(content);
-            break;
-          }
         }
       }}
     >
@@ -131,6 +148,20 @@ const SlateComponent = () => {
         spellCheck
         autoFocus
         onKeyDown={(event) => {
+          const content = JSON.stringify(value);
+          if (!event.ctrlKey) {
+            return;
+          }
+          switch (event.key) {
+            case 's': {
+              event.preventDefault();
+              console.log(content);
+              writeDocument()
+              break;
+            }
+            default:
+              break;
+          }
           for (const hotkey in HOTKEYS) {
             if (isHotkey(hotkey, event)) {
               event.preventDefault();
