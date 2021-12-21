@@ -1,12 +1,14 @@
 import React, { useState, useReducer } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+import EditorPage from './EditorPage';
 
 import axios from 'axios';
 
-const Login = (props) => {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [passValue, setPassValue] = useState('');
-
+  const navigate = useNavigate();
   const initState = {
     username: '',
     password: '',
@@ -15,18 +17,19 @@ const Login = (props) => {
     displayedMessage: 'Enter a username and password to log in'
   };
 
-  const authenticateLogin = (e) => {
+  const authenticateLogin = async (e) => {
     e.preventDefault();
-    checkAuthentication();
+    await checkAuthentication();
     dispatch({ type: 'check_passwords' });
   };
   const goToEditor = () => {
-    props.history.push('/editor');
+    navigate('/editor');
   };
   const checkAuthentication = async () => {
     const userresp = await axios.get(
       `http://localhost:3001/api/users/${username}`
     );
+    console.log(username + ' ', passValue);
     setPassValue(userresp.data.user[0].password);
     console.log(userresp.data.user[0].password);
   };
@@ -45,7 +48,7 @@ const Login = (props) => {
               messageClass: 'valid',
               displayedMessage: 'You are logged in'
             },
-            goToEditor)
+            goToEditor())
           : {
               ...state,
               messageClass: 'invalid',
@@ -73,8 +76,8 @@ const Login = (props) => {
           placeholder="Username"
           id="username"
           onChange={(e) => {
-            dispatch({ type: 'username', payload: e.target.value });
             setUsername(e.target.value);
+            dispatch({ type: 'username', payload: e.target.value });
           }}
         />
         <label htmlFor="username">Username</label>

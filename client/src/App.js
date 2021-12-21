@@ -2,7 +2,6 @@
 import './style/App.css';
 
 import { Route, Routes } from 'react-router-dom';
-import { useHistory } from 'react-router';
 import Login from './pages/Login';
 import NewUser from './pages/NewUser';
 import EditorPage from './pages/EditorPage';
