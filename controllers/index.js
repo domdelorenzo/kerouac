@@ -49,7 +49,7 @@ const createDoc = async (req, res) => {
 const getDocByTitle = async (req, res) => {
   const title = req.params.title;
   try {
-    const document = await Document.find({ name: title });
+    const document = await Document.find({ title: title });
     return res.status(200).json({ document });
   } catch (error) {
     return res.status(500).send(error.message);

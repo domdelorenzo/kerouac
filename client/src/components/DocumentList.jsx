@@ -9,7 +9,7 @@ const DocumentList = ({openDoc}) => {
 const [selectedID, setSelectedID] = useState('')
 const [documentlist, setDocumentlist] = useState([])
 const [ newdoc, setNewdoc] = useState({
-  name: "",
+  title: "",
   userID: "ddeloren",
   content: [{
     type: 'paragraph',
@@ -20,7 +20,7 @@ const [ newdoc, setNewdoc] = useState({
 const getDocuments = async () => {
   // e.preventDefault()
   const result = await axios.get('http://localhost:3001/api/documents')
-  console.log(result.data.documents[0].name)
+  console.log(result.data.documents[0].title)
   setDocumentlist(result.data.documents)
 }
 useEffect(()=> {
@@ -47,13 +47,11 @@ const createNewDoc = (e) => {
 
   return (
     <div>
-      {/* <button onClick={getDocuments}>Get documents</button> */}
-      {/* Place new doc button here */}
       <form onSubmit={createNewDoc}>
         <input 
           type="text"
           placeholder="Title here"
-          name="name"
+          name="title"
           // title={title}
           onChange={handleChange}
         />
@@ -64,7 +62,7 @@ const createNewDoc = (e) => {
         {documentlist.map((doc)=> (
           <DocumentCard
           key={doc._id}
-          name={doc.name}
+          title={doc.title}
           id={doc._id}
           //pass prop to load doc
           onClick={()=> {

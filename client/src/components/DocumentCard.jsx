@@ -11,7 +11,7 @@ const DocumentCard = (props) => {
     onClick={props.onClick}
     >
       <div className="info wrapper">
-        <h3>{props.name}</h3>
+        <h3>{props.title}</h3>
         {/* <button onClick={props.deletefunc}>delete</button> */}
         <span className="delete-btn" onClick={onDelete
           // () => {console.log(props.id)}
