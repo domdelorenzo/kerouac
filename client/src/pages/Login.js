@@ -1,14 +1,13 @@
 import React, { useState, useReducer } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router';
-import EditorPage from './EditorPage';
+import { useHistory } from 'react-router';
 
 import axios from 'axios';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [passValue, setPassValue] = useState('');
-  const navigate = useNavigate();
+  const history = useHistory();
   const initState = {
     username: '',
     password: '',
@@ -22,9 +21,9 @@ const Login = () => {
     await checkAuthentication();
     dispatch({ type: 'check_passwords' });
   };
-  const goToEditor = () => {
-    navigate('/editor');
-  };
+  // const goToEditor = () => {
+  //   props.history.push('/editor');
+  // };
   const checkAuthentication = async () => {
     const userresp = await axios.get(
       `http://localhost:3001/api/users/${username}`
@@ -42,13 +41,13 @@ const Login = () => {
       case 'check_passwords':
         // return state.password === state.confirm
         return state.password === `${passValue}`
-          ? ({
+          ? (history.push('/editor'),
+            {
               ...state,
               authenticated: true,
               messageClass: 'valid',
               displayedMessage: 'You are logged in'
-            },
-            goToEditor())
+            })
           : {
               ...state,
               messageClass: 'invalid',

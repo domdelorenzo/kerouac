@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './style/App.css';
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import NewUser from './pages/NewUser';
 import EditorPage from './pages/EditorPage';
@@ -20,17 +20,17 @@ function App() {
     <div className="App">
       <NavBar />
       <main>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/editor" element={<EditorPage />} />
-          <Route path="/newuser" element={<NewUser />} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/editor" component={EditorPage} />
+          <Route path="/newuser" component={NewUser} />
           {/* <Route path="/reactrichmd" element={<ReactRichMD />} /> */}
           {/* <Route path="/remirror" element={<Remirror />} /> */}
-          <Route path="/slate" element={<SlateEditor />} />
+          <Route path="/slate" component={SlateEditor} />
           {/* <Route path="/Plate" element={<PlateEditor />} /> */}
           {/* <Route path="/tiptap" element={<TipEditor />} /> */}
-        </Routes>
+        </Switch>
       </main>
     </div>
   );
