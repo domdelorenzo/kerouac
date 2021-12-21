@@ -115,12 +115,12 @@ const SlateComponent = (props) => {
     []
   );
 
-  useEffect(()=>{
-    setValue(props.initialValue)
-    console.log(`useEffect value is ${value}`)
-    console.log(value)
+  // useEffect(()=>{
+  //   setValue(props.initialValue)
+  //   console.log(`useEffect value is ${value}`)
+  //   console.log(value)
     
-  },[props.initialValue])
+  // },[props.initialValue])
 
   return (
     <Slate

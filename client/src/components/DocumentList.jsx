@@ -42,11 +42,6 @@ const createNewDoc = (e) => {
     console.log(e.target)
   }
 
-// const [docID, setDocID] = useState('')
-const cardClick = (e) => {
-  console.log('Click!')
-  // console.log(selectedID)
-}
   return (
     <div>
       {/* <button onClick={getDocuments}>Get documents</button> */}
@@ -72,7 +67,6 @@ const cardClick = (e) => {
           onClick={()=> {
             openDoc(doc._id)
             setSelectedID(doc._id);
-            cardClick()
           }
           
             }

@@ -13,13 +13,13 @@ const Editor = () => {
   const [docID, setdocID] = useState('');
   const [initialValue, setInitialValue] = useState(defaultText);
 
-  useEffect(() => {
-    // console.log(docID);
-    console.log('useEffect invoked');
-    // console.log(`DocumentID is ${docID}`);
-    loadDocument();
-    return;
-  }, [docID]);
+  // useEffect(() => {
+  //   // console.log(docID);
+  //   console.log('useEffect invoked');
+  //   // console.log(`DocumentID is ${docID}`);
+  //   loadDocument();
+  //   return;
+  // }, [docID]);
 
   const loadDocument = async () => {
     const response = await axios.get(
@@ -43,12 +43,7 @@ const Editor = () => {
       </div>
       <div className="content-container">
         {/* <EditorPanel /> */}
-        <SlateComponent
-          initialValue={initialValue}
-          // docID={renderedDoc}
-          // render={}
-          //pass prop to load renderedDoc
-        />
+        <SlateComponent initialValue={initialValue} />
       </div>
     </div>
   );
