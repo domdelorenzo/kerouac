@@ -76,7 +76,7 @@ const isMarkActive = (editor, format) => {
 const SlateComponent = (props) => {
   const [docDetails, setDocDetails] = useState({
     // name: 'First document',
-    name: '',
+    title: '',
     userID: 'ddeloren',
     content: []
   });
@@ -144,7 +144,7 @@ const SlateComponent = (props) => {
           //save value to Local Storage
           const content = JSON.stringify(value);
           console.log(content);
-          setDocDetails({ ...docDetails, name: `${props.title}`, content: value});
+          setDocDetails({ ...docDetails, title: `${props.title}`, content: value});
           console.log(docDetails)
           localStorage.setItem('content', content);
         }

@@ -37,7 +37,7 @@ const EditorPage = () => {
     console.log(docID);
     // console.log(response.data.document.content);
     setInitialValue(response.data.document.content);
-    setTitle(response.data.document.name);
+    setTitle(response.data.document.title);
     return;
   };
 

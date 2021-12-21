@@ -1,16 +1,15 @@
 import React, { useState, useReducer } from 'react';
-import { Link } from 'react-router-dom';
 
-const Login = (props) => {
+const NewUser = () => {
   const initState = {
     username: '',
     password: '',
-    authenticated: false,
-    messageClass: ''
-    // displayedMessage: 'Passwords must match.'
+    passwordConfirm: '',
+    valid: false,
+    messageClass: '',
+    displayedMessage: 'Passwords must match.'
   };
-
-  const authenticateLogin = (e) => {
+  const validatePasswords = (e) => {
     e.preventDefault();
     dispatch({ type: 'check_passwords' });
   };
@@ -20,18 +19,20 @@ const Login = (props) => {
         return { ...state, username: action.payload };
       case 'password':
         return { ...state, password: action.payload };
+      case 'confirm':
+        return { ...state, confirm: action.payload };
       case 'check_passwords':
         return state.password === state.confirm
           ? {
               ...state,
-              authenticated: true,
+              valid: true,
               messageClass: 'valid',
-              displayedMessage: 'You are logged in'
+              displayedMessage: 'Passwords are a match'
             }
           : {
               ...state,
               messageClass: 'invalid',
-              displayedMessage: 'Username and password do not match. Try again.'
+              displayedMessage: 'Passwords do not match'
             };
       case 'reset':
         return {
@@ -39,16 +40,17 @@ const Login = (props) => {
           username: '',
           password: '',
           messageClass: '',
-          displayedMessage: ''
+          displayedMessage: 'Passwords must match'
         };
       default:
         return state;
     }
   };
   const [state, dispatch] = useReducer(reducer, initState);
+
   return (
     <div className="form">
-      <h1>Log In</h1>
+      <h1>Sign Up</h1>
       <form>
         <input
           type="text"
@@ -70,12 +72,24 @@ const Login = (props) => {
         />
         <label htmlFor="password">Password</label>
 
+        <input
+          //should this type be "password" or something to make it unique?
+          type="password"
+          // type="confirm"
+          placeholder="Confirm password"
+          id="passwordConfirm"
+          onChange={(e) =>
+            dispatch({ type: 'confirm', payload: e.target.value })
+          }
+        />
+        <label htmlFor="passwordConfirm">Confirm password</label>
+
         <button
           type="submit"
-          onClick={authenticateLogin}
+          onClick={validatePasswords}
           // {() => dispatch({ type: 'submit' })}
         >
-          LOG IN
+          Sign Up
         </button>
         <button
           type="reset"
@@ -88,10 +102,11 @@ const Login = (props) => {
         >
           Reset
         </button>
+
+        <p class={state.messageClass}>{state.displayedMessage}</p>
       </form>
-      <Link to="/newuser">New user? Register here.</Link>
     </div>
   );
 };
 
-export default Login;
+export default NewUser;

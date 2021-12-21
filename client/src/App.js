@@ -4,6 +4,7 @@ import './style/App.css';
 import { Route, Routes } from 'react-router-dom';
 
 import Login from './pages/Login';
+import NewUser from './pages/NewUser';
 import EditorPage from './pages/EditorPage';
 import NavBar from './components/Navbar';
 import Home from './pages/Home';
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/editor" element={<EditorPage />} />
+          <Route path="/newuser" element={<NewUser />} />
           {/* <Route path="/reactrichmd" element={<ReactRichMD />} /> */}
           {/* <Route path="/remirror" element={<Remirror />} /> */}
           <Route path="/slate" element={<SlateEditor />} />
