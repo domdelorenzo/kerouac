@@ -100,7 +100,8 @@ const SlateComponent = (props) => {
   }
   const [value, setValue] = useState(
     // props.initialValue || 
-    renderedText
+    // renderedText
+    ''
   );
   
   // const [value, setValue] = useState(
@@ -115,14 +116,17 @@ const SlateComponent = (props) => {
     []
   );
 
-  // useEffect(()=>{
-  //   setValue(props.initialValue)
-  //   console.log(`useEffect value is ${value}`)
-  //   console.log(value)
+  useEffect(()=>{
+    setValue(props.initialValue)
+    // console.log(`useEffect value is ${value}`)
+    console.log(value)
     
-  // },[props.initialValue])
-
-  return (
+  },[props.initialValue])
+  //conditionally render return if initialValue is not null
+  
+  if (value ==='') {
+    return <div></div>
+  } else return (
     <Slate
       editor={editor}
       // change this to props.value to make it rerender

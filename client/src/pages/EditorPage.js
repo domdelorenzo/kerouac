@@ -11,15 +11,22 @@ import '@remirror/styles/all.css';
 const EditorPage = () => {
   // const [renderedDoc, setRenderedDoc] = useState('');
   const [docID, setdocID] = useState('');
-  const [initialValue, setInitialValue] = useState(defaultText);
+  const [initialValue, setInitialValue] = useState(
+    ''
+    // defaultText
+  );
 
-  // useEffect(() => {
-  //   // console.log(docID);
-  //   console.log('useEffect invoked');
-  //   // console.log(`DocumentID is ${docID}`);
-  //   loadDocument();
-  //   return;
-  // }, [docID]);
+  useEffect(() => {
+    // console.log(docID);
+    setInitialValue('');
+    console.log('useEffect invoked');
+    // console.log(`DocumentID is ${docID}`);
+    // if (docId) {
+    loadDocument();
+    // }
+
+    return;
+  }, [docID]);
 
   const loadDocument = async () => {
     const response = await axios.get(
@@ -30,6 +37,8 @@ const EditorPage = () => {
     setInitialValue(response.data.document.content);
     return;
   };
+
+  /* IDEA: let slate component be null and conditionally render onlyl when document list is clikced */
 
   return (
     <div className="editor-container">
