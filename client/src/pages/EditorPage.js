@@ -7,6 +7,7 @@ import axios from 'axios';
 import DocumentList from '../components/DocumentList';
 
 import '@remirror/styles/all.css';
+import { propIsFunction } from '@remirror/react-utils';
 
 const EditorPage = () => {
   // const [renderedDoc, setRenderedDoc] = useState('');
@@ -15,9 +16,10 @@ const EditorPage = () => {
     ''
     // defaultText
   );
+  const [title, setTitle] = useState('');
 
   useEffect(() => {
-    // console.log(docID);
+    // this resets the initialvalue to nothing so that the component page will rerender!
     setInitialValue('');
     console.log('useEffect invoked');
     // console.log(`DocumentID is ${docID}`);
@@ -35,6 +37,7 @@ const EditorPage = () => {
     console.log(docID);
     // console.log(response.data.document.content);
     setInitialValue(response.data.document.content);
+    setTitle(response.data.document.name);
     return;
   };
 
@@ -52,7 +55,11 @@ const EditorPage = () => {
       </div>
       <div className="content-container">
         {/* <EditorPanel /> */}
-        <SlateComponent initialValue={initialValue} />
+        <SlateComponent
+          initialValue={initialValue}
+          docID={docID}
+          title={title}
+        />
       </div>
     </div>
   );

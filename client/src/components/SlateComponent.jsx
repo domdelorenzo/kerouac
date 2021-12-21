@@ -75,15 +75,19 @@ const isMarkActive = (editor, format) => {
 
 const SlateComponent = (props) => {
   const [docDetails, setDocDetails] = useState({
-    name: 'First document',
+    // name: 'First document',
+    name: '',
     userID: 'ddeloren',
     content: []
   });
   const writeDocument = () => {
     axios.put(
-      'http://localhost:3001/api/document/61bfb6ee631ad13ebdefabe5',
+      // 'http://localhost:3001/api/document/61bfb6ee631ad13ebdefabe5',
+      `http://localhost:3001/api/document/${props.docID}`,
       docDetails
     );
+    console.log(props.docID)
+    console.log(props.title)
     console.log('This is where we make a put request');
   };
 
@@ -140,7 +144,7 @@ const SlateComponent = (props) => {
           //save value to Local Storage
           const content = JSON.stringify(value);
           console.log(content);
-          setDocDetails({ ...docDetails, content: value});
+          setDocDetails({ ...docDetails, name: `${props.title}`, content: value});
           console.log(docDetails)
           localStorage.setItem('content', content);
         }

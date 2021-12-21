@@ -11,7 +11,10 @@ const [documentlist, setDocumentlist] = useState([])
 const [ newdoc, setNewdoc] = useState({
   name: "",
   userID: "ddeloren",
-  content: []
+  content: [{
+    type: 'paragraph',
+    children: [ { text: "" } ]
+  }]
 });
 
 const getDocuments = async () => {
