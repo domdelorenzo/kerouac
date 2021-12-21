@@ -8,7 +8,7 @@ import DocumentList from '../components/DocumentList';
 
 import '@remirror/styles/all.css';
 
-const Editor = () => {
+const EditorPage = () => {
   // const [renderedDoc, setRenderedDoc] = useState('');
   const [docID, setdocID] = useState('');
   const [initialValue, setInitialValue] = useState(defaultText);
@@ -84,4 +84,4 @@ const defaultText = [
   }
 ];
 
-export default Editor;
+export default EditorPage;

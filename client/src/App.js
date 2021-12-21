@@ -4,7 +4,7 @@ import './style/App.css';
 import { Route, Routes } from 'react-router-dom';
 
 import Login from './pages/Login';
-import Editor from './pages/Editor';
+import EditorPage from './pages/EditorPage';
 import NavBar from './components/Navbar';
 import Home from './pages/Home';
 // import ReactRichMD from './pages/React-Rich-Markdown';
@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/editor" element={<Editor />} />
+          <Route path="/editor" element={<EditorPage />} />
           {/* <Route path="/reactrichmd" element={<ReactRichMD />} /> */}
           {/* <Route path="/remirror" element={<Remirror />} /> */}
           <Route path="/slate" element={<SlateEditor />} />
