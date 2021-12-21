@@ -1,6 +1,13 @@
 import React, { useState, useReducer } from 'react';
+import axios from 'axios';
 
 const NewUser = () => {
+  const [username, setUsername] = useState('');
+  const [passValue, setPassValue] = useState('');
+  const [newUser, setNewUser] = useState({
+    username: '',
+    password: ''
+  });
   const initState = {
     username: '',
     password: '',
@@ -13,6 +20,9 @@ const NewUser = () => {
     e.preventDefault();
     dispatch({ type: 'check_passwords' });
   };
+  const addNewUser = () => {
+    axios.post('http://localhost:3001/api/users/', newUser);
+  };
   const reducer = (state, action) => {
     switch (action.type) {
       case 'username':
@@ -23,12 +33,16 @@ const NewUser = () => {
         return { ...state, confirm: action.payload };
       case 'check_passwords':
         return state.password === state.confirm
-          ? {
+          ? (setNewUser({ username: username, password: passValue }),
+            console.log(newUser),
+            console.log('good to go'),
+            addNewUser(),
+            {
               ...state,
               valid: true,
               messageClass: 'valid',
               displayedMessage: 'Passwords are a match'
-            }
+            })
           : {
               ...state,
               messageClass: 'invalid',
@@ -56,9 +70,10 @@ const NewUser = () => {
           type="text"
           placeholder="Username"
           id="username"
-          onChange={(e) =>
-            dispatch({ type: 'username', payload: e.target.value })
-          }
+          onChange={(e) => {
+            dispatch({ type: 'username', payload: e.target.value });
+            setUsername(e.target.value);
+          }}
         />
         <label htmlFor="username">Username</label>
 
@@ -66,9 +81,10 @@ const NewUser = () => {
           type="password"
           placeholder="Password"
           id="password"
-          onChange={(e) =>
-            dispatch({ type: 'password', payload: e.target.value })
-          }
+          onChange={(e) => {
+            dispatch({ type: 'password', payload: e.target.value });
+            setPassValue(e.target.value);
+          }}
         />
         <label htmlFor="password">Password</label>
 
@@ -100,7 +116,7 @@ const NewUser = () => {
             });
           }}
         >
-          Reset
+          RESET
         </button>
 
         <p class={state.messageClass}>{state.displayedMessage}</p>

@@ -1,18 +1,34 @@
 import React, { useState, useReducer } from 'react';
 import { Link } from 'react-router-dom';
 
+import axios from 'axios';
+
 const Login = (props) => {
+  const [username, setUsername] = useState('');
+  const [passValue, setPassValue] = useState('');
+
   const initState = {
     username: '',
     password: '',
     authenticated: false,
-    messageClass: ''
-    // displayedMessage: 'Passwords must match.'
+    messageClass: '',
+    displayedMessage: 'Enter a username and password to log in'
   };
 
   const authenticateLogin = (e) => {
     e.preventDefault();
+    checkAuthentication();
     dispatch({ type: 'check_passwords' });
+  };
+  const goToEditor = () => {
+    props.history.push('/editor');
+  };
+  const checkAuthentication = async () => {
+    const userresp = await axios.get(
+      `http://localhost:3001/api/users/${username}`
+    );
+    setPassValue(userresp.data.user[0].password);
+    console.log(userresp.data.user[0].password);
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -21,13 +37,15 @@ const Login = (props) => {
       case 'password':
         return { ...state, password: action.payload };
       case 'check_passwords':
-        return state.password === state.confirm
-          ? {
+        // return state.password === state.confirm
+        return state.password === `${passValue}`
+          ? ({
               ...state,
               authenticated: true,
               messageClass: 'valid',
               displayedMessage: 'You are logged in'
-            }
+            },
+            goToEditor)
           : {
               ...state,
               messageClass: 'invalid',
@@ -54,9 +72,10 @@ const Login = (props) => {
           type="text"
           placeholder="Username"
           id="username"
-          onChange={(e) =>
-            dispatch({ type: 'username', payload: e.target.value })
-          }
+          onChange={(e) => {
+            dispatch({ type: 'username', payload: e.target.value });
+            setUsername(e.target.value);
+          }}
         />
         <label htmlFor="username">Username</label>
 
@@ -89,6 +108,7 @@ const Login = (props) => {
           Reset
         </button>
       </form>
+      <p class={state.messageClass}>{state.displayedMessage}</p>
       <Link to="/newuser">New user? Register here.</Link>
     </div>
   );

@@ -82,7 +82,6 @@ const SlateComponent = (props) => {
   });
   const writeDocument = () => {
     axios.put(
-      // 'http://localhost:3001/api/document/61bfb6ee631ad13ebdefabe5',
       `http://localhost:3001/api/document/${props.docID}`,
       docDetails
     );
@@ -91,9 +90,6 @@ const SlateComponent = (props) => {
     console.log('This is where we make a put request');
   };
 
-  // const [value, setValue] = useState(
-  //   JSON.parse(localStorage.getItem('content')) || initialValue
-  // );
   let renderedText = defaultText
   if (props.initialValue){
     console.log(props.initialValue)
