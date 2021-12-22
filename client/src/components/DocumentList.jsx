@@ -2,10 +2,10 @@ import React, {useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import DocumentCard from './DocumentCard';
 
-
-const DocumentList = (props, {openDoc}) => {
+const DocumentList = (props) => {
 const [selectedID, setSelectedID] = useState('')
 // const [documentlist, setDocumentlist] = useState([])
+// const [documentState, setDocumentState ] = useState(true)
 const [ newdoc, setNewdoc] = useState({
   title: "",
   userID: "",
@@ -20,20 +20,12 @@ const [currentUser,
   setAuthentication,
   docID,
   setDocID,
-  deletefunc,
-  // documentlist,
-  // setDocumentlist
+  getDocuments,
+  documentState, 
+  setDocumentState,
+  setDocumentlist
   ] = props.functions
-// const getDocuments = async () => {
-//   // e.preventDefault()
-//   const result = await axios.get(`http://localhost:3001/api/documents/${currentUser}`)
-//   console.log(currentUser)
-//   console.log(result.data.document[0])
-//   setDocumentlist(result.data.document)
-// }
-// useEffect(()=> {
-//   getDocuments()
-// },[])
+
 const handleChange = (e) => {
   console.log(e.target.value)
   console.log(currentUser)
@@ -44,16 +36,16 @@ const createNewDoc = (e) => {
   e.preventDefault();
   console.log('Triggering new document');
   console.log(newdoc);
-  axios.post('http://localhost:3001/api/documents',newdoc)
-
+  axios.post('http://localhost:3001/api/documents',newdoc);
+  // getDocuments();
+  setDocumentState(newdoc)
+  console.log(documentState)
 }
 
+// useEffect(()=>{
+//   getDocuments()
+// },[documentState])
 
-  // const deletefunc = (e) => {
-  //   e.preventDefault();
-  //   console.log('triggering delete')
-  //   console.log(e.target)
-  // }
 
   return (
     <div>
@@ -74,16 +66,15 @@ const createNewDoc = (e) => {
             key={doc._id}
             title={doc.title}
             id={doc._id}
-            //pass prop to load doc
+            functions={[documentState,setDocumentState]}
             onClick={()=> {
               // openDoc(doc._id)
               setDocID(doc._id)
               setSelectedID(doc._id);
+              // setDocumentState(true)
+              getDocuments()
+              }            
             }
-            
-              }
-              // deletefunc={deletefunc}
-              
           />
         </div>
 

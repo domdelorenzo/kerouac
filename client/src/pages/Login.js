@@ -133,7 +133,7 @@ const Login = (props) => {
           onClick={authenticateLogin}
           // {() => dispatch({ type: 'submit' })}
         >
-          LOG IN
+          Log In
         </button>
         <button
           type="reset"
