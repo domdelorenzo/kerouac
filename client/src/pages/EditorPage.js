@@ -19,6 +19,9 @@ const EditorPage = (props) => {
   const [title, setTitle] = useState('');
   const [currentUser, setCurrentUser, authentication, setAuthentication] =
     props.functions;
+
+  const [documentlist, setDocumentlist] = useState([]);
+
   useEffect(() => {
     // this resets the initialvalue to nothing so that the component page will rerender!
     setInitialValue('');
@@ -41,9 +44,26 @@ const EditorPage = (props) => {
     setTitle(response.data.document.title);
     return;
   };
+  const deletefunc = (e) => {
+    e.preventDefault();
+    console.log('triggering delete');
+    console.log(e.target);
+  };
 
   /* IDEA: let slate component be null and conditionally render onlyl when document list is clikced */
+  //elevating from DocumentList
 
+  const getDocuments = async () => {
+    // e.preventDefault()
+    const result = await axios.get(
+      `http://localhost:3001/api/documents/${currentUser}`
+    );
+    setDocumentlist(result.data.document);
+  };
+
+  useEffect(() => {
+    getDocuments();
+  }, [documentlist]);
   return (
     <div className="editor-container">
       <div className="side-pane-container">
@@ -54,8 +74,13 @@ const EditorPage = (props) => {
             setCurrentUser,
             authentication,
             setAuthentication,
-            setdocID
+            docID,
+            setdocID,
+            deletefunc
+            // documentlist,
+            // setDocumentlist
           ]}
+          documentlist={documentlist}
           openDoc={(selectedID) => {
             setdocID(selectedID);
           }}

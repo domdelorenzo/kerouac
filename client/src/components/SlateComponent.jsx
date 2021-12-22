@@ -77,7 +77,7 @@ const SlateComponent = (props) => {
   const [docDetails, setDocDetails] = useState({
     // name: 'First document',
     title: '',
-    userID: 'ddeloren',
+    // userID: '',
     content: []
   });
   const writeDocument = () => {
@@ -90,19 +90,15 @@ const SlateComponent = (props) => {
     console.log('This is where we make a put request');
   };
 
-  let renderedText = defaultText
-  if (props.initialValue){
-    console.log(props.initialValue)
-    renderedText = props.initialValue 
-  } else {
-    // renderedText = defaultText
-    console.log('use default text')
-  }
-  const [value, setValue] = useState(
-    // props.initialValue || 
-    // renderedText
-    ''
-  );
+  // let renderedText = defaultText
+  // if (props.initialValue){
+  //   console.log(props.initialValue)
+  //   renderedText = props.initialValue 
+  // } else {
+  //   // renderedText = defaultText
+  //   console.log('use default text')
+  // }
+  const [value, setValue] = useState('');
   
   // const [value, setValue] = useState(
   //   JSON.parse({savedDoc});
@@ -121,7 +117,8 @@ const SlateComponent = (props) => {
     // console.log(`useEffect value is ${value}`)
     console.log(value)
     
-  },[props.initialValue])
+  }, [props.initialValue]
+  )
   //conditionally render return if initialValue is not null
   
   if (value ==='') {
@@ -178,6 +175,7 @@ const SlateComponent = (props) => {
       />
     </Slate>
   );
+      
 };
 const withShortcuts = (editor) => {
   const { deleteBackward, insertText } = editor;
