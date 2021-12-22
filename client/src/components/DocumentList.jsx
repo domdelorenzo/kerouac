@@ -32,7 +32,7 @@ useEffect(()=> {
 const handleChange = (e) => {
   console.log(e.target.value)
   console.log(currentUser)
-  setNewdoc({...newdoc, [e.target.name]: e.target.value });
+  setNewdoc({...newdoc, "userID": currentUser, [e.target.name]: e.target.value });
   console.log({...newdoc, "userID": currentUser, [e.target.name]: e.target.value });
 };
 const createNewDoc = (e) => {
