@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './style/App.css';
-
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import NewUser from './pages/NewUser';
@@ -16,14 +16,31 @@ import SlateEditor from './pages/Slate';
 // import '@remirror/styles/all.css';
 
 function App() {
+  // const [currentUser, setCurrentUser] = useState('');
+  // const handleUserState = (e) => {
+  //   setCurrentUser(e);
+  // };
+  // useEffect(() => {
+  //   console.log(currentUser);
+  // }, [currentUser]);
   return (
     <div className="App">
       <NavBar />
       <main>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/editor" component={EditorPage} />
+          <Route
+            // currentUser={currentUser}
+            // handleUserState={handleUserState}
+            // functions={[currentUser, setCurrentUser]}
+            path="/login"
+            component={Login}
+          />
+          <Route
+            // currentUser={currentUser}
+            path="/editor"
+            component={EditorPage}
+          />
           <Route path="/newuser" component={NewUser} />
           {/* <Route path="/reactrichmd" element={<ReactRichMD />} /> */}
           {/* <Route path="/remirror" element={<Remirror />} /> */}
