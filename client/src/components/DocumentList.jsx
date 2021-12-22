@@ -1,34 +1,44 @@
 import React, {useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import DocumentCard from './DocumentCard';
-import { propIsFunction } from '@remirror/react-utils';
-import { set } from 'mongoose';
 
 
-const DocumentList = ({openDoc}) => {
+const DocumentList = (props, {openDoc}) => {
 const [selectedID, setSelectedID] = useState('')
-const [documentlist, setDocumentlist] = useState([])
+// const [documentlist, setDocumentlist] = useState([])
 const [ newdoc, setNewdoc] = useState({
   title: "",
-  userID: "ddeloren",
+  userID: "",
   content: [{
     type: 'paragraph',
     children: [ { text: "" } ]
   }]
 });
-
-const getDocuments = async () => {
-  // e.preventDefault()
-  const result = await axios.get('http://localhost:3001/api/documents')
-  console.log(result.data.documents[0].title)
-  setDocumentlist(result.data.documents)
-}
-useEffect(()=> {
-  getDocuments()
-},[])
+const [currentUser,
+  setCurrentUser,
+  authentication,
+  setAuthentication,
+  docID,
+  setDocID,
+  deletefunc,
+  // documentlist,
+  // setDocumentlist
+  ] = props.functions
+// const getDocuments = async () => {
+//   // e.preventDefault()
+//   const result = await axios.get(`http://localhost:3001/api/documents/${currentUser}`)
+//   console.log(currentUser)
+//   console.log(result.data.document[0])
+//   setDocumentlist(result.data.document)
+// }
+// useEffect(()=> {
+//   getDocuments()
+// },[])
 const handleChange = (e) => {
-  setNewdoc({...newdoc, [e.target.name]: e.target.value });
-  console.log({...newdoc, [e.target.name]: e.target.value });
+  console.log(e.target.value)
+  console.log(currentUser)
+  setNewdoc({...newdoc, "userID": currentUser, [e.target.name]: e.target.value });
+  console.log({...newdoc, "userID": currentUser, [e.target.name]: e.target.value });
 };
 const createNewDoc = (e) => {
   e.preventDefault();
@@ -39,11 +49,11 @@ const createNewDoc = (e) => {
 }
 
 
-  const deletefunc = (e) => {
-    e.preventDefault();
-    console.log('triggering delete')
-    console.log(e.target)
-  }
+  // const deletefunc = (e) => {
+  //   e.preventDefault();
+  //   console.log('triggering delete')
+  //   console.log(e.target)
+  // }
 
   return (
     <div>
@@ -52,28 +62,30 @@ const createNewDoc = (e) => {
           type="text"
           placeholder="Title here"
           name="title"
-          // title={title}
           onChange={handleChange}
         />
         <button type="submit">New document</button>
         </form>
       {/* map result from axios call into each card */}
       <section className="filelist">
-        {documentlist.map((doc)=> (
-          <DocumentCard
-          key={doc._id}
-          title={doc.title}
-          id={doc._id}
-          //pass prop to load doc
-          onClick={()=> {
-            openDoc(doc._id)
-            setSelectedID(doc._id);
-          }
-          
+        {props.documentlist.map((doc)=> (
+          <div className="documentCard">
+            <DocumentCard
+            key={doc._id}
+            title={doc.title}
+            id={doc._id}
+            //pass prop to load doc
+            onClick={()=> {
+              // openDoc(doc._id)
+              setDocID(doc._id)
+              setSelectedID(doc._id);
             }
-            deletefunc={deletefunc}
-        ></DocumentCard>
-        
+            
+              }
+              // deletefunc={deletefunc}
+              
+          />
+        </div>
 
         )
         )}

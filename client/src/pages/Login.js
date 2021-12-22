@@ -1,14 +1,14 @@
 import React, { useState, useReducer } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router';
-import EditorPage from './EditorPage';
+import { useHistory } from 'react-router';
 
 import axios from 'axios';
+import { set } from 'mongoose';
 
-const Login = () => {
+const Login = (props) => {
   const [username, setUsername] = useState('');
   const [passValue, setPassValue] = useState('');
-  const navigate = useNavigate();
+  const history = useHistory();
   const initState = {
     username: '',
     password: '',
@@ -16,22 +16,48 @@ const Login = () => {
     messageClass: '',
     displayedMessage: 'Enter a username and password to log in'
   };
-
+  //OHHH this is it!
+  const [currentUser, setCurrentUser, authentication, setAuthentication] =
+    props.functions;
   const authenticateLogin = async (e) => {
     e.preventDefault();
     await checkAuthentication();
     dispatch({ type: 'check_passwords' });
   };
   const goToEditor = () => {
-    navigate('/editor');
+    // setCurrentUser(state.username);
+    console.log(state.username);
+    // history.push('/editor');
   };
+
   const checkAuthentication = async () => {
     const userresp = await axios.get(
       `http://localhost:3001/api/users/${username}`
     );
-    console.log(username + ' ', passValue);
+    //   console.log(username + ' ', passValue);
+    setCurrentUser(username);
+    console.log(currentUser);
     setPassValue(userresp.data.user[0].password);
     console.log(userresp.data.user[0].password);
+    //   if (state.password === `${passValue}`) {
+    //     return {
+    //       ...state,
+    //       authenticated: true,
+    //       messageClass: 'valid',
+    //       displayedMessage: 'You are logged in'
+    //     };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       messageClass: 'invalid',
+    //       displayedMessage: 'Username and password do not match. Try again.'
+    //     };
+    //   }
+
+    //   if (state.authenticated === true) {
+    //     console.log('you are authenticated');
+    //   }
+    //   console.log(state.authenticated);
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -42,13 +68,13 @@ const Login = () => {
       case 'check_passwords':
         // return state.password === state.confirm
         return state.password === `${passValue}`
-          ? ({
+          ? // history.push('/editor'),
+            {
               ...state,
               authenticated: true,
               messageClass: 'valid',
               displayedMessage: 'You are logged in'
-            },
-            goToEditor())
+            }
           : {
               ...state,
               messageClass: 'invalid',
@@ -67,6 +93,16 @@ const Login = () => {
     }
   };
   const [state, dispatch] = useReducer(reducer, initState);
+
+  if (state.authenticated === true) {
+    console.log('you are authenticated');
+    setAuthentication(true);
+    console.log(authentication);
+    console.log(currentUser);
+    // setUser(state.username);
+  } else {
+    console.log(state.authenticated);
+  }
   return (
     <div className="form">
       <h1>Log In</h1>

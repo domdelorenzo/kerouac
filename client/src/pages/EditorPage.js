@@ -9,7 +9,7 @@ import DocumentList from '../components/DocumentList';
 import '@remirror/styles/all.css';
 import { propIsFunction } from '@remirror/react-utils';
 
-const EditorPage = () => {
+const EditorPage = (props) => {
   // const [renderedDoc, setRenderedDoc] = useState('');
   const [docID, setdocID] = useState('');
   const [initialValue, setInitialValue] = useState(
@@ -17,6 +17,10 @@ const EditorPage = () => {
     // defaultText
   );
   const [title, setTitle] = useState('');
+  const [currentUser, setCurrentUser, authentication, setAuthentication] =
+    props.functions;
+
+  const [documentlist, setDocumentlist] = useState([]);
 
   useEffect(() => {
     // this resets the initialvalue to nothing so that the component page will rerender!
@@ -40,14 +44,43 @@ const EditorPage = () => {
     setTitle(response.data.document.title);
     return;
   };
+  const deletefunc = (e) => {
+    e.preventDefault();
+    console.log('triggering delete');
+    console.log(e.target);
+  };
 
   /* IDEA: let slate component be null and conditionally render onlyl when document list is clikced */
+  //elevating from DocumentList
 
+  const getDocuments = async () => {
+    // e.preventDefault()
+    const result = await axios.get(
+      `http://localhost:3001/api/documents/${currentUser}`
+    );
+    setDocumentlist(result.data.document);
+  };
+
+  useEffect(() => {
+    getDocuments();
+  }, [documentlist]);
   return (
     <div className="editor-container">
       <div className="side-pane-container">
         <button onClick={loadDocument}>getDocID</button>
         <DocumentList
+          functions={[
+            currentUser,
+            setCurrentUser,
+            authentication,
+            setAuthentication,
+            docID,
+            setdocID,
+            deletefunc
+            // documentlist,
+            // setDocumentlist
+          ]}
+          documentlist={documentlist}
           openDoc={(selectedID) => {
             setdocID(selectedID);
           }}
