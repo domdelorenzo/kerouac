@@ -1,18 +1,18 @@
-html,
+/* html,
 input,
 textarea {
   font-family: 'Roboto', sans-serif;
   line-height: 1.4;
   background: #eee;
-}
+} */
 
-body {
+/* body {
   margin: 0;
 }
 
 p {
   margin: 0;
-}
+} */
 
 pre {
   padding: 10px;
@@ -62,7 +62,6 @@ input {
   width: 100%;
   padding: 0.5em;
   border: 2px solid #ddd;
-  background: #fafafa;
 }
 
 input:focus {

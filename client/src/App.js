@@ -25,7 +25,7 @@ function App() {
   // }, [currentUser]);
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar /> */}
       <main>
         <Switch>
           <Route exact path="/" component={Home} />
