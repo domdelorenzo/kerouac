@@ -14,7 +14,14 @@ export default function Home() {
   if (authentication) {
     return (
       <div>
-        <LogoutButton functions={[authentication, setAuthentication]} />
+        <LogoutButton
+          functions={[
+            currentUser,
+            setCurrentUser,
+            authentication,
+            setAuthentication
+          ]}
+        />
         <EditorPage functions={[currentUser, setCurrentUser]} />
       </div>
     );

@@ -12,5 +12,6 @@ router.delete('/document/:id', controllers.deleteDoc);
 router.get('/users', controllers.getAllUsers);
 router.get('/users/:username', controllers.getUserByName);
 router.post('/users', controllers.createUser);
+router.get('/documents/:userID', controllers.getDocsByUser);
 
 module.exports = router;

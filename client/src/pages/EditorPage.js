@@ -9,7 +9,7 @@ import DocumentList from '../components/DocumentList';
 import '@remirror/styles/all.css';
 import { propIsFunction } from '@remirror/react-utils';
 
-const EditorPage = () => {
+const EditorPage = (props) => {
   // const [renderedDoc, setRenderedDoc] = useState('');
   const [docID, setdocID] = useState('');
   const [initialValue, setInitialValue] = useState(
@@ -17,7 +17,8 @@ const EditorPage = () => {
     // defaultText
   );
   const [title, setTitle] = useState('');
-
+  const [currentUser, setCurrentUser, authentication, setAuthentication] =
+    props.functions;
   useEffect(() => {
     // this resets the initialvalue to nothing so that the component page will rerender!
     setInitialValue('');
@@ -48,6 +49,13 @@ const EditorPage = () => {
       <div className="side-pane-container">
         <button onClick={loadDocument}>getDocID</button>
         <DocumentList
+          functions={[
+            currentUser,
+            setCurrentUser,
+            authentication,
+            setAuthentication,
+            setdocID
+          ]}
           openDoc={(selectedID) => {
             setdocID(selectedID);
           }}

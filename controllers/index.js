@@ -124,6 +124,16 @@ const createUser = async (req, res) => {
   }
 };
 
+const getDocsByUser = async (req, res) => {
+  const userID = req.params.userID;
+  try {
+    const document = await Document.find({ userID: userID });
+    return res.status(200).json({ document });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   getAllDocs,
   updateDoc,
@@ -134,5 +144,6 @@ module.exports = {
   getAllUsers,
   getUserByName,
   getPassword,
-  createUser
+  createUser,
+  getDocsByUser
 };
