@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,200;0,400;0,700;1,400;1,700&display=swap');
-
+@import url('../fonts/iosevka-etoile.css');
 * {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'Iosevka Etoile Web','IBM Plex Sans', sans-serif;
   color: rgb(34, 34, 34);
   background: #f7f7f7;
 }
