@@ -1,29 +1,3 @@
-// import React, { useMemo, useState, useEffect } from 'react';
-// import { createEditor } from 'slate';
-// import { Slate, Editable, withReact } from 'slate-react';
-
-// const SlateEditor = () => {
-//   const editor = useMemo(() => withReact(createEditor()), []);
-//   const [value, setValue] = useState([
-//     {
-//       type: 'paragraph',
-//       children: [{ text: 'Write, endlessly...' }]
-//     }
-//   ]);
-//   return (
-//     <div>
-//       <Slate
-//         editor={editor}
-//         value={value}
-//         onChange={(newValue) => setValue(newValue)}
-//       >
-//         <Editable className="slateBox" />
-//       </Slate>
-//     </div>
-//   );
-// };
-
-// export default SlateEditor;
 import '../style/Slate.css';
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Slate, Editable, withReact } from 'slate-react';
@@ -75,9 +49,7 @@ const isMarkActive = (editor, format) => {
 
 const SlateComponent = (props) => {
   const [docDetails, setDocDetails] = useState({
-    // name: 'First document',
     title: '',
-    // userID: '',
     content: []
   });
   const writeDocument = () => {
@@ -111,7 +83,6 @@ const SlateComponent = (props) => {
   } else return (
     <Slate
       editor={editor}
-      // change this to props.value to make it rerender
       value={value}
       onChange={(value) => {
         setValue(value);
@@ -119,7 +90,6 @@ const SlateComponent = (props) => {
           (op) => 'set_selection' !== op.type
         );
         if (isNewChange) {
-          //save value to Local Storage
           const content = JSON.stringify(value);
           console.log(content);
           setDocDetails({ ...docDetails, title: `${props.title}`, content: value});
