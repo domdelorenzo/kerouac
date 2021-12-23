@@ -1,12 +1,14 @@
 import React from 'react';
 import LogoutButton from './LogoutButton';
+import ThemeButton from './ThemeButton';
 
  const Menu=(props)=> {
     const[
     currentUser,
     setCurrentUser,
     authentication,
-    setAuthentication
+    setAuthentication,
+    themeSwitcher
   ]=props.functions
 
   return (
@@ -22,6 +24,9 @@ import LogoutButton from './LogoutButton';
             authentication,
             setAuthentication
           ]}
+        />
+        <ThemeButton
+        functions={themeSwitcher}
         />
     </header>
   );

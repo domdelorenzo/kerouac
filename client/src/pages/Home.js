@@ -3,7 +3,8 @@ import EditorPage from './EditorPage';
 import Login from './Login';
 import Menu from '../components/Menu';
 
-export default function Home() {
+export default function Home(props) {
+  const themeSwitcher = props.functions;
   const [currentUser, setCurrentUser] = useState('');
   const [authentication, setAuthentication] = useState(false);
   useEffect(() => {
@@ -18,7 +19,8 @@ export default function Home() {
             currentUser,
             setCurrentUser,
             authentication,
-            setAuthentication
+            setAuthentication,
+            themeSwitcher
           ]}
         />
         <EditorPage functions={[currentUser, setCurrentUser]} />

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,200;0,400;0,700;1,400;1,700&display=swap');
 @import url('../fonts/iosevka-etoile.css');
-* {
+/* * {
   font-family: 'Iosevka Etoile Web','IBM Plex Sans', 'Courier New', Courier, monospace;
   color: rgb(34, 34, 34);
   background: #f7f7f7;
-}
+} */
 
 .material-icons-outlined {
   font-family: 'Material Icons Outlined';
@@ -50,14 +50,7 @@
 .selected{
   border-left:.5vmin solid rgb(80, 80, 80);
 }
-.content-container{
-  color:rgb(80, 80, 80);
-  background-color: #f7f7f7;
-  width: 75%;
-  height: 100%;
-  padding-left: 10vw;
-  padding-right: 10vw;
-}
+
 
 
 /*login validator style*/
@@ -95,10 +88,6 @@ color: white;
 transition: none;
 }
 
-/* .cancel {
-  background-color: #ff0000;
-} */
-
 .cancel:before{
   content: '';
 border-bottom: .5vmin solid red;
@@ -110,7 +99,6 @@ right: 0;
 margin: 0 auto;
 width: 0;
 transition: 0.3s;
-
 }
 
 .cancel:focus {
@@ -150,7 +138,6 @@ h1 {
   padding: 4rem 2rem 1rem;
 }
 
-
 input {
   border-top:none;
   border-left:none;
@@ -160,8 +147,6 @@ input {
   margin: 1.5rem 0 0.5rem;
   padding: 0.5rem 0;
 }
-
-
 
 input:focus {
   border-color: rgb(63, 63, 63);
@@ -207,7 +192,6 @@ form {
   transition: height 5s linear;
 }
 
-
 @keyframes pulse {
   0% {
 		box-shadow: 0px 5px 17.5px 0px  rgba(127, 127, 127, 0.7);
@@ -252,7 +236,6 @@ form ~ .valid {
   width: 1.5rem;
   margin-right: 0.25rem;
 }
-
 
 .menu-switch:before{
   border:none;

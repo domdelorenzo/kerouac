@@ -8304,6 +8304,11 @@
     "shallowequal" "^1.1.0"
     "supports-color" "^5.5.0"
 
+"styled-theming@^2.2.0":
+  "integrity" "sha1-MITkPUDqq0vBHrr9PeBONiL+434="
+  "resolved" "https://registry.npmjs.org/styled-theming/-/styled-theming-2.2.0.tgz"
+  "version" "2.2.0"
+
 "stylehacks@^5.0.1":
   "integrity" "sha512-Es0rVnHIqbWzveU1b24kbw92HsebBepxfcqe5iix7t9j0PQqhs0IxXVXv0pY2Bxa08CgMkzD6OWql7kbGOuEdA=="
   "resolved" "https://registry.npmjs.org/stylehacks/-/stylehacks-5.0.1.tgz"
