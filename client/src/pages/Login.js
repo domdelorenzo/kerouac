@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import AppWelcome from '../components/AppWelcome';
 
 import axios from 'axios';
 import { set } from 'mongoose';
@@ -93,7 +94,14 @@ const Login = (props) => {
     }
   };
   const [state, dispatch] = useReducer(reducer, initState);
-
+  const unhide = () => {
+    console.log('click');
+    let element = document.getElementById('hidden');
+    let pulsing = document.querySelector('.pulse');
+    // document.getElementByID('hidden');
+    element.classList.remove('hidden');
+    pulsing.classList.remove('pulse');
+  };
   if (state.authenticated === true) {
     console.log('you are authenticated');
     setAuthentication(true);
@@ -104,51 +112,47 @@ const Login = (props) => {
     console.log(state.authenticated);
   }
   return (
-    <div className="form">
-      <h1>Log In</h1>
-      <form>
-        <input
-          type="text"
-          placeholder="Username"
-          id="username"
-          onChange={(e) => {
-            setUsername(e.target.value);
-            dispatch({ type: 'username', payload: e.target.value });
-          }}
-        />
-        <label htmlFor="username">Username</label>
+    <div className="login-container">
+      <AppWelcome />
+      <div onClick={unhide} className="form pulse">
+        <h2>Log In</h2>
+        <form id="hidden" className="hidden">
+          <input
+            type="text"
+            placeholder="Username"
+            id="username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+              dispatch({ type: 'username', payload: e.target.value });
+            }}
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          id="password"
-          onChange={(e) =>
-            dispatch({ type: 'password', payload: e.target.value })
-          }
-        />
-        <label htmlFor="password">Password</label>
-
-        <button
-          type="submit"
-          onClick={authenticateLogin}
-          // {() => dispatch({ type: 'submit' })}
-        >
-          Log In
-        </button>
-        <button
-          type="reset"
-          class="cancel"
-          onClick={() => {
-            dispatch({
-              type: 'reset'
-            });
-          }}
-        >
-          Reset
-        </button>
-      </form>
-      <p class={state.messageClass}>{state.displayedMessage}</p>
-      <Link to="/newuser">New user? Register here.</Link>
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            onChange={(e) =>
+              dispatch({ type: 'password', payload: e.target.value })
+            }
+          />
+          <div className="button-container">
+            <button type="submit" onClick={authenticateLogin}>
+              Log In
+            </button>
+            <button
+              type="reset"
+              class="cancel"
+              onClick={() => {
+                dispatch({ type: 'reset' });
+              }}
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+        <Link to="/newuser">New user? Register here.</Link>
+        <p class={state.messageClass}>{state.displayedMessage}</p>
+      </div>
     </div>
   );
 };

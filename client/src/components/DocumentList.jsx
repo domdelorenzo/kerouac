@@ -41,6 +41,12 @@ const createNewDoc = (e) => {
   setDocumentState(newdoc)
   console.log(documentState)
 }
+const chosenDoc = (e) => {
+  let current = document.querySelector('.selected')
+  current.classList.remove('slected');
+  console.log('click id')
+  e.target.toggleClass("selected")
+}
 
 // useEffect(()=>{
 //   getDocuments()
@@ -58,22 +64,21 @@ const createNewDoc = (e) => {
         />
         <button type="submit">New document</button>
         </form>
-      {/* map result from axios call into each card */}
-      <section className="filelist">
-        {props.documentlist.map((doc)=> (
-          <div className="documentCard">
+          <section className="filelist">
+          {props.documentlist.map((doc)=> (
+          <div className="documentCard"
+            onClick={chosenDoc}
+          >
             <DocumentCard
             key={doc._id}
             title={doc.title}
             id={doc._id}
             functions={[documentState,setDocumentState]}
-            onClick={()=> {
-              // openDoc(doc._id)
-              setDocID(doc._id)
+            onClick={()=>{
+              setDocID(doc._id);
               setSelectedID(doc._id);
-              // setDocumentState(true)
               getDocuments()
-              }            
+              }         
             }
           />
         </div>

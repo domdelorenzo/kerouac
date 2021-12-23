@@ -10,24 +10,22 @@ const DocumentCard = (props) => {
     console.log(documentState)
     console.log('onDelete run')
   }
-  // const onDelete = props.functions
+
+ 
   return (
-    <div className="card" 
+    <div className="card"
+    id={props.id}
     onClick={props.onClick}
+    
     >
-      <div className="info wrapper">
+      <div className="info-wrapper">
      
-
-
-        <p> 
-          <span class="material-icons-outlined">description
-          </span>
-          {props.title}
-          <span style={{float:"right"}} onClick={onDelete} class="material-icons-outlined">
-            delete
-            </span></p>
-      </div>
+      <span class="material-icons-outlined">description</span>
+      <div>{props.title} </div>
+        
       
+      </div>
+      <span style={{float:"right"}} onClick={onDelete} class="material-icons-outlined delete">delete</span>
     </div>
   )
 }

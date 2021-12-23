@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import SidePane from '../components/SidePane';
-import Content from '../components/Content';
-import EditorPanel from '../components/EditorPanel';
 import SlateComponent from '../components/SlateComponent';
 import axios from 'axios';
 import DocumentList from '../components/DocumentList';
-import { get } from 'mongoose';
 
 const EditorPage = (props) => {
   const [docID, setdocID] = useState('');
@@ -20,8 +16,6 @@ const EditorPage = (props) => {
     // this resets the initialvalue to nothing so that the component page will rerender!
     setInitialValue('');
     console.log('useEffect invoked');
-    // console.log(`DocumentID is ${docID}`);
-
     loadDocument();
 
     return;
@@ -32,17 +26,12 @@ const EditorPage = (props) => {
       `http://localhost:3001/api/document/${docID}`
     );
     console.log(docID);
-    // console.log(response.data.document.content);
     setInitialValue(response.data.document.content);
     setTitle(response.data.document.title);
     return;
   };
 
-  /* IDEA: let slate component be null and conditionally render onlyl when document list is clikced */
-  //elevating from DocumentList
-
   const getDocuments = async () => {
-    // e.preventDefault()
     const result = await axios.get(
       `http://localhost:3001/api/documents/${currentUser}`
     );

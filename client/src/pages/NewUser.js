@@ -1,7 +1,10 @@
 import React, { useState, useReducer } from 'react';
+import AppWelcome from '../components/AppWelcome';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 
 const NewUser = () => {
+  const history = useHistory();
   const [username, setUsername] = useState('');
   const [passValue, setPassValue] = useState('');
   const [newUser, setNewUser] = useState({
@@ -22,6 +25,7 @@ const NewUser = () => {
   };
   const addNewUser = () => {
     axios.post('http://localhost:3001/api/users/', newUser);
+    history.push(`/`);
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -63,64 +67,64 @@ const NewUser = () => {
   const [state, dispatch] = useReducer(reducer, initState);
 
   return (
-    <div className="form">
-      <h1>Sign Up</h1>
-      <form>
-        <input
-          type="text"
-          placeholder="Username"
-          id="username"
-          onChange={(e) => {
-            dispatch({ type: 'username', payload: e.target.value });
-            setUsername(e.target.value);
-          }}
-        />
-        <label htmlFor="username">Username</label>
+    <div className="login-container">
+      <AppWelcome />
+      <div className="form">
+        <h2>Sign Up</h2>
+        <form>
+          <input
+            type="text"
+            placeholder="Username"
+            id="username"
+            onChange={(e) => {
+              dispatch({ type: 'username', payload: e.target.value });
+              setUsername(e.target.value);
+            }}
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          id="password"
-          onChange={(e) => {
-            dispatch({ type: 'password', payload: e.target.value });
-            setPassValue(e.target.value);
-          }}
-        />
-        <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            onChange={(e) => {
+              dispatch({ type: 'password', payload: e.target.value });
+              setPassValue(e.target.value);
+            }}
+          />
 
-        <input
-          //should this type be "password" or something to make it unique?
-          type="password"
-          // type="confirm"
-          placeholder="Confirm password"
-          id="passwordConfirm"
-          onChange={(e) =>
-            dispatch({ type: 'confirm', payload: e.target.value })
-          }
-        />
-        <label htmlFor="passwordConfirm">Confirm password</label>
-
-        <button
-          type="submit"
-          onClick={validatePasswords}
-          // {() => dispatch({ type: 'submit' })}
-        >
-          Sign Up
-        </button>
-        <button
-          type="reset"
-          class="cancel"
-          onClick={() => {
-            dispatch({
-              type: 'reset'
-            });
-          }}
-        >
-          RESET
-        </button>
-
-        <p class={state.messageClass}>{state.displayedMessage}</p>
-      </form>
+          <input
+            //should this type be "password" or something to make it unique?
+            type="password"
+            // type="confirm"
+            placeholder="Confirm password"
+            id="passwordConfirm"
+            onChange={(e) =>
+              dispatch({ type: 'confirm', payload: e.target.value })
+            }
+          />
+          <div className="button-container">
+            <button
+              type="submit"
+              onClick={validatePasswords}
+              // {() => dispatch({ type: 'submit' })}
+            >
+              Sign Up
+            </button>
+            <button
+              type="reset"
+              class="cancel"
+              onClick={() => {
+                dispatch({
+                  type: 'reset'
+                });
+              }}
+            >
+              Reset
+            </button>
+          </div>
+          <p class={state.messageClass}>{state.displayedMessage}</p>
+        </form>
+      </div>
     </div>
   );
 };
