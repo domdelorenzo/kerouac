@@ -16,8 +16,8 @@ Kerouac is a markdown editor for writers, academics, and engineers, designed to 
 
 Kerouac provides:
 * WYSIWYG interface
-* Smart punctuation
-* Keybindings for formatting
+* Markdown-like shortcuts for formatting
+* Keybindings for formatting and saving
 
 ***
 
@@ -35,7 +35,6 @@ This project uses the following technologies
 - [Express.js](http://expressjs.com/) as Node web framework
 - [React.js](https://reactjs.org) for client, [React Router](https://reacttraining.com/react-router/) v5 for routing
 - [Node.js](https://nodejs.org/en/) for server
-- [Create React App](https://github.com/facebook/create-react-app) for bootstrapping client
 - [Slate](https://github.com/ianstormtaylor/slate) for rich text editing and rendering
 
 ### ***Project Status***
@@ -50,11 +49,11 @@ Refer to the project's [Trello page](https://trello.com/b/08z798iH/markdown-edit
 - [x] Document creation, saving, and deletion
 
 ### ***Future Updates***
-- [ ] Markdown file import
+- [ ] Local markdown file import
 - [ ] Markdown file export to local storage
 - [ ] Document Hierarchy Display
 - [ ] Suport user-generated theming
-- [ ] Wordcount
+- [ ] Display wordcount
 - [ ] Hemingway mode (backspace key disabled)
 - [ ] Focus mode
 - [ ] Google Drive integration
@@ -67,7 +66,13 @@ Refer to the project's [Trello page](https://trello.com/b/08z798iH/markdown-edit
 
 ## ***Quick Start***
 
-Get up and running with a development server using the following commands
+* Click the *New User* registration link to create an account
+* log in witn your username and password
+* Enter a document title and click *New Document* to create a blank document
+* Click the document in the left navigation panel to begin editing.
+* Type Ctrl+ 's' to save your work!
+
+If self-hosting, you can clone this repository and run a development server using the following commands:
 
 ```javascript
 // Install all dependencies for client & server
@@ -84,5 +89,14 @@ npm dev
 
 ### ***Credits***
 
-Fonts: [Iosevka Etoile](https://typeof.net/Iosevka/)
-Iconss: [Material Icons](https://fonts.google.com/icons)
+Fonts: 
+* [Iosevka Etoile](https://typeof.net/Iosevka/)
+* [IBM Plex](https://www.ibm.com/plex/) (fallback)
+
+Icons: [Material Icons](https://fonts.google.com/icons)
+
+CSS pulse animation: [Florin Pop](https://www.florin-pop.com/blog/2019/03/css-pulse-effect/)
+
+Rich Text CSS: [Slate Examples](https://www.slatejs.org/examples/)
+
+App bootstrapping: [Create React App](https://github.com/facebook/create-react-app)

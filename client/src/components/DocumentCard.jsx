@@ -14,16 +14,12 @@ const DocumentCard = (props) => {
  
   return (
     <div className="card"
-    id={props.id}
-    onClick={props.onClick}
-    
+      id={props.id}
+      onClick={props.onClick}
     >
       <div className="info-wrapper">
-     
       <span class="material-icons-outlined">description</span>
       <div>{props.title} </div>
-        
-      
       </div>
       <span style={{float:"right"}} onClick={onDelete} class="material-icons-outlined delete">delete</span>
     </div>

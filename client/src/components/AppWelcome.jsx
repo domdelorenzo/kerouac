@@ -1,8 +1,6 @@
 import React from "react";
 
-
 const AppWelcome = () => {
-
   return(
     <div classname="welcome-container">
       <h1 className="title">Kerouac</h1>
@@ -11,7 +9,6 @@ const AppWelcome = () => {
 
     </div>
   )
-
 }
 
 export default AppWelcome

@@ -89,19 +89,8 @@ const SlateComponent = (props) => {
     console.log(props.title)
     console.log('This is where we make a put request');
   };
-
-  // let renderedText = defaultText
-  // if (props.initialValue){
-  //   console.log(props.initialValue)
-  //   renderedText = props.initialValue 
-  // } else {
-  //   // renderedText = defaultText
-  //   console.log('use default text')
-  // }
   const [value, setValue] = useState('');
   
-  // const [value, setValue] = useState(
-  //   JSON.parse({savedDoc});
   const renderElement = useCallback(
     (props) => React.createElement(Element, Object.assign({}, props)),
     []
@@ -113,13 +102,9 @@ const SlateComponent = (props) => {
   );
 
   useEffect(()=>{
-    setValue(props.initialValue)
-    // console.log(`useEffect value is ${value}`)
-    console.log(value)
-    
+    setValue(props.initialValue)  
   }, [props.initialValue]
   )
-  //conditionally render return if initialValue is not null
   
   if (value ==='') {
     return <div></div>
@@ -299,38 +284,5 @@ const Leaf = ({ attributes, children, leaf }) => {
 
   return <span {...attributes}>{children}</span>;
 };
-const defaultText = [
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text: 'The editor gives you full control over the logic you can add. For example, it\'s fairly common to want to add markdown-like shortcuts to editors. So that, when you start a line with "> " you get a blockquote that looks like this:'
-      }
-    ]
-  },
-  {
-    type: 'block-quote',
-    children: [{ text: 'A wise quote.' }]
-  },
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text: 'Order when you start a line with "## " you get a level-two heading, like this:'
-      }
-    ]
-  },
-  {
-    type: 'heading-two',
-    children: [{ text: 'Try it out!' }]
-  },
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text: 'Try it out for yourself! Try starting a new line with ">", "-", or "#"s.'
-      }
-    ]
-  }
-];
+
 export default SlateComponent;

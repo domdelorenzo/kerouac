@@ -48,11 +48,6 @@ const chosenDoc = (e) => {
   e.target.toggleClass("selected")
 }
 
-// useEffect(()=>{
-//   getDocuments()
-// },[documentState])
-
-
   return (
     <div>
       <form onSubmit={createNewDoc}>
@@ -66,29 +61,26 @@ const chosenDoc = (e) => {
         </form>
           <section className="filelist">
           {props.documentlist.map((doc)=> (
-          <div className="documentCard"
-            onClick={chosenDoc}
-          >
-            <DocumentCard
-            key={doc._id}
-            title={doc.title}
-            id={doc._id}
-            functions={[documentState,setDocumentState]}
-            onClick={()=>{
-              setDocID(doc._id);
-              setSelectedID(doc._id);
-              getDocuments()
-              }         
-            }
-          />
-        </div>
-
-        )
-        )}
+            <div className="documentCard"
+              onClick={chosenDoc}
+            >
+              <DocumentCard
+              key={doc._id}
+              title={doc.title}
+              id={doc._id}
+              functions={[documentState,setDocumentState]}
+              onClick={()=>{
+                setDocID(doc._id);
+                setSelectedID(doc._id);
+                getDocuments()
+                }         
+              }
+            />
+          </div>
+        ))}
       </section>
     </div>
   )
-
 }
 
 export default DocumentList

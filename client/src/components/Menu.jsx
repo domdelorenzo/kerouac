@@ -9,12 +9,6 @@ import LogoutButton from './LogoutButton';
     setAuthentication
   ]=props.functions
 
-  // const handleChange = (e) => {
-  //   console.log(e.target.value)
-  //   console.log(currentUser)
-  //   setNewdoc({...newdoc, "userID": currentUser, [e.target.name]: e.target.value });
-  //   console.log({...newdoc, "userID": currentUser, [e.target.name]: e.target.value });
-  // };
   return (
     <header>
       <div className="menu-container">
@@ -29,16 +23,6 @@ import LogoutButton from './LogoutButton';
             setAuthentication
           ]}
         />
-         {/* <form onSubmit={createNewDoc}>
-        <input 
-          type="text"
-          placeholder="Title here"
-          name="title"
-          onChange={handleChange}
-        />
-        <button type="submit">New document</button>
-        </form> */}
-
     </header>
   );
 }
