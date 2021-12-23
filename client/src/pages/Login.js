@@ -40,25 +40,6 @@ const Login = (props) => {
     console.log(currentUser);
     setPassValue(userresp.data.user[0].password);
     console.log(userresp.data.user[0].password);
-    //   if (state.password === `${passValue}`) {
-    //     return {
-    //       ...state,
-    //       authenticated: true,
-    //       messageClass: 'valid',
-    //       displayedMessage: 'You are logged in'
-    //     };
-    //   } else {
-    //     return {
-    //       ...state,
-    //       messageClass: 'invalid',
-    //       displayedMessage: 'Username and password do not match. Try again.'
-    //     };
-    //   }
-
-    //   if (state.authenticated === true) {
-    //     console.log('you are authenticated');
-    //   }
-    //   console.log(state.authenticated);
   };
   const reducer = (state, action) => {
     switch (action.type) {

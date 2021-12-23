@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,200;0,400;0,700;1,400;1,700&display=swap');
 @import url('../fonts/iosevka-etoile.css');
 * {
-  font-family: 'IBM Plex Sans', 'Iosevka Etoile Web', sans-serif;
+  font-family: 'Iosevka Etoile Web','IBM Plex Sans', sans-serif;
   color: rgb(34, 34, 34);
   background: #f7f7f7;
 }
@@ -150,12 +150,6 @@ h1 {
   padding: 4rem 2rem 1rem;
 }
 
-.hidden {
-  display: none;
-  transition-delay: 1s;
-  transition-duration: 3s;
-  transition-property: height;
-}
 
 input {
   border-top:none;
@@ -165,19 +159,9 @@ input {
   display: block;
   margin: 1.5rem 0 0.5rem;
   padding: 0.5rem 0;
-  transition: border 0.3s ease-in;
-  /* box-sizing: border-box; */
-  /* border: 2px solid #ddd; */
 }
 
 
-/* input {
-  box-sizing: border-box;
-  font-size: 0.85em;
-  width: 100%;
-  padding: 0.5em;
-  border: 2px solid #ddd;
-}  */
 
 input:focus {
   border-color: rgb(63, 63, 63);
@@ -189,6 +173,9 @@ input[type='password'] {
   width: 100%;
 }
 
+.title {
+  font-weight: 100;
+}
 
 .form {
   box-shadow: 0px 5px 17.5px 0px rgb(172, 172, 172) ;
@@ -196,18 +183,30 @@ input[type='password'] {
   margin: auto;
   max-width: 400px;
   text-align: center;
-
-
 }
 .pulse {
-  animation: pulse 3s infinite;
+  animation: pulse 2.5s infinite;
 }
 form {
   padding: 1.5rem 2rem;
   text-align: left;
-
-  
+  transition: height 0.5s linear;
+  height: 100%;  
 }
+
+#hidden {
+  height: 100%;
+  opacity: 1;  
+  transition: height 5s linear;
+}
+
+#hidden.hidden {
+  /* display: none; */
+  height: 0px;
+  opacity: 0;
+  transition: height 5s linear;
+}
+
 
 @keyframes pulse {
   0% {
@@ -255,3 +254,6 @@ form ~ .valid {
 }
 
 
+.menu-switch:before{
+  border:none;
+}

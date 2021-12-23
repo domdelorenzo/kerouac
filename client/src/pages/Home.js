@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import EditorPanel from '../components/EditorPanel';
 import EditorPage from './EditorPage';
 import Login from './Login';
-import LogoutButton from '../components/LogoutButton';
+import Menu from '../components/Menu';
 
 export default function Home() {
   const [currentUser, setCurrentUser] = useState('');
@@ -14,7 +13,7 @@ export default function Home() {
   if (authentication) {
     return (
       <div>
-        <LogoutButton
+        <Menu
           functions={[
             currentUser,
             setCurrentUser,

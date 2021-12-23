@@ -39,3 +39,11 @@
 	src: url('woff2/iosevka-etoile-bolditalic.woff2') format('woff2');
 }
 
+@font-face {
+	font-family: 'Iosevka Etoile Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('woff2/iosevka-etoile-light.woff2') format('woff2'),
+}
