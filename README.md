@@ -23,8 +23,8 @@ Kerouac provides:
 
 ### ***Screenshots***
 
-![login]('./Screenshots/Login.png')
-![page]('./Screenshots/Page.png')
+![login]('Screenshots/Login.png')
+![page]('Screenshots/Page.png')
 
 ***
 ### ***Technologies Used (MERN)***
