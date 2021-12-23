@@ -50,6 +50,7 @@ Refer to the project's [Trello page](https://trello.com/b/08z798iH/markdown-edit
 - [x] User authentication
 - [x] User document storage in app database
 - [x] Document creation, saving, and deletion
+- [x] Light/dark mode switching
 
 ### ***Future Updates***
 - [ ] Local markdown file import
@@ -73,7 +74,7 @@ Refer to the project's [Trello page](https://trello.com/b/08z798iH/markdown-edit
 * log in witn your username and password
 * Enter a document title and click *New Document* to create a blank document
 * Click the document in the left navigation panel to begin editing.
-* Type Ctrl+ 's' to save your work!
+* Type Ctrl+'s' to save your work!
 
 If self-hosting, you can clone this repository and run a development server using the following commands:
 
@@ -103,3 +104,7 @@ CSS pulse animation: [Florin Pop](https://www.florin-pop.com/blog/2019/03/css-pu
 Rich Text CSS: [Slate Examples](https://www.slatejs.org/examples/)
 
 App bootstrapping: [Create React App](https://github.com/facebook/create-react-app)
+
+Theming: [Styled Components](https://styled-components.com/)
+
+Dark mode inspiration: [CSS Tricks](https://css-tricks.com/a-dark-mode-toggle-with-react-and-themeprovider/)
