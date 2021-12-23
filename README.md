@@ -23,8 +23,11 @@ Kerouac provides:
 
 ### ***Screenshots***
 
-![login](Screenshots/Login.png)
-![page](Screenshots/Page.png)
+<div align="center">
+  <pre>
+    <img src="screenshots/Login.png" height="500" />&nbsp;&nbsp;&nbsp;<img src="screenshots/Page.png" height="500" />&nbsp;&nbsp;&nbsp;<img src="screenshots/Prufrock.png" height="500" />
+  </pre>
+</div>
 
 ***
 ### ***Technologies Used (MERN)***
