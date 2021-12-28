@@ -24,4 +24,11 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(`${__dirname}/client/build/index.html`));
   });
 }
+
+// Step 1: import client build file to server
+app.use(express.static(path.resolve(__dirname, './client/build')));
+// Step 2: ensure that the routes defined with React Router are sent to index.html
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+});
 app.listen(PORT, () => console.log(`Hello, port ${PORT}. I'm listening...`));
