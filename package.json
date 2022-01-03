@@ -21,8 +21,7 @@
     "build": "cd client && rm -rf build && npm install && npm run build",
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "start": "npm run server"
+    "start": "node server.js"
   },
   "keywords": [],
   "dependencies": {
