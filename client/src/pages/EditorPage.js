@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SlateComponent from '../components/SlateComponent';
 import axios from 'axios';
 import DocumentList from '../components/DocumentList';
+import { BASE_URL } from '../globals';
 
 const EditorPage = (props) => {
   const [docID, setdocID] = useState('');
@@ -22,9 +23,7 @@ const EditorPage = (props) => {
   }, [docID]);
 
   const loadDocument = async () => {
-    const response = await axios.get(
-      `http://localhost:3001/api/document/${docID}`
-    );
+    const response = await axios.get(`${BASE_URL}/document/${docID}`);
     console.log(docID);
     setInitialValue(response.data.document.content);
     setTitle(response.data.document.title);
@@ -32,9 +31,7 @@ const EditorPage = (props) => {
   };
 
   const getDocuments = async () => {
-    const result = await axios.get(
-      `http://localhost:3001/api/documents/${currentUser}`
-    );
+    const result = await axios.get(`${BASE_URL}/documents/${currentUser}`);
     setDocumentlist(result.data.document);
     console.log('getDocuments run');
   };

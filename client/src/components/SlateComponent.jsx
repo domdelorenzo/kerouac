@@ -12,6 +12,7 @@ import {
 import { withHistory } from 'slate-history';
 import isHotkey from 'is-hotkey';
 import axios from 'axios';
+import { BASE_URL } from '../globals';
 
 const SHORTCUTS = {
   '*': 'list-item',
@@ -54,7 +55,7 @@ const SlateComponent = (props) => {
   });
   const writeDocument = () => {
     axios.put(
-      `http://localhost:3001/api/document/${props.docID}`,
+      `${BASE_URL}/document/${props.docID}`,
       docDetails
     );
     console.log(props.docID)

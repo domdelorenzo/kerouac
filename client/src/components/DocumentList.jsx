@@ -1,6 +1,7 @@
 import React, {useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import DocumentCard from './DocumentCard';
+import { BASE_URL } from '../globals';
 
 const DocumentList = (props) => {
 const [selectedID, setSelectedID] = useState('')
@@ -36,7 +37,7 @@ const createNewDoc = (e) => {
   e.preventDefault();
   console.log('Triggering new document');
   console.log(newdoc);
-  axios.post('http://localhost:3001/api/documents',newdoc);
+  axios.post(`${BASE_URL}/documents`,newdoc);
   // getDocuments();
   setDocumentState(newdoc)
   console.log(documentState)

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import AppWelcome from '../components/AppWelcome';
 
 import axios from 'axios';
-import { set } from 'mongoose';
+import { BASE_URL } from '../globals';
 
 const Login = (props) => {
   const [username, setUsername] = useState('');
@@ -17,7 +17,7 @@ const Login = (props) => {
     messageClass: '',
     displayedMessage: 'Enter a username and password to log in'
   };
-  //OHHH this is it!
+
   const [currentUser, setCurrentUser, authentication, setAuthentication] =
     props.functions;
   const authenticateLogin = async (e) => {
@@ -25,16 +25,9 @@ const Login = (props) => {
     await checkAuthentication();
     dispatch({ type: 'check_passwords' });
   };
-  const goToEditor = () => {
-    // setCurrentUser(state.username);
-    console.log(state.username);
-    // history.push('/editor');
-  };
 
   const checkAuthentication = async () => {
-    const userresp = await axios.get(
-      `http://localhost:3001/api/users/${username}`
-    );
+    const userresp = await axios.get(`${BASE_URL}/users/${username}`);
     //   console.log(username + ' ', passValue);
     setCurrentUser(username);
     console.log(currentUser);

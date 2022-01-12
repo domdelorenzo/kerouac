@@ -5,7 +5,7 @@ const DocumentCard = (props) => {
   const [documentState, setDocumentState] = props.functions
   const onDelete = () => {
     console.log(props.id)
-    axios.delete(`http://localhost:3001/api/document/${props.id}`)
+    axios.delete(`${BASE_URL}/document/${props.id}`)
     setDocumentState(props.id)
     console.log(documentState)
     console.log('onDelete run')

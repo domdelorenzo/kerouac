@@ -2,15 +2,13 @@ import React, { useState, useReducer } from 'react';
 import AppWelcome from '../components/AppWelcome';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import { BASE_URL } from '../globals';
 
 const NewUser = () => {
   const history = useHistory();
   const [username, setUsername] = useState('');
   const [passValue, setPassValue] = useState('');
-  const [newUser, setNewUser] = useState({
-    username: '',
-    password: ''
-  });
+
   const initState = {
     username: '',
     password: '',
@@ -24,7 +22,10 @@ const NewUser = () => {
     dispatch({ type: 'check_passwords' });
   };
   const addNewUser = () => {
-    axios.post('http://localhost:3001/api/users/', newUser);
+    axios.post(`${BASE_URL}/users`, {
+      username: username,
+      password: passValue
+    });
     history.push(`/`);
   };
   const reducer = (state, action) => {
@@ -37,9 +38,7 @@ const NewUser = () => {
         return { ...state, confirm: action.payload };
       case 'check_passwords':
         return state.password === state.confirm
-          ? (setNewUser({ username: username, password: passValue }),
-            console.log(newUser),
-            console.log('good to go'),
+          ? (console.log('good to go'),
             addNewUser(),
             {
               ...state,
