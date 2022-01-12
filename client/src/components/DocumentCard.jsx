@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import { BASE_URL } from '../globals';
 
 const DocumentCard = (props) => {
   const [documentState, setDocumentState] = props.functions
