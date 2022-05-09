@@ -2,6 +2,8 @@
 
 A distraction-free, cross-platform markdown editor, inspired by Typora and iA Writer
 
+Deployed at [https://kerouac-app.herokuapp.com/](https://kerouac-app.herokuapp.com/)
+
 ## Maintainer - Dominick DeLorenzo
 [LinkedIn](https://www.linkedin.com/in/dominick-delorenzo-breed) | [Twitter](https://twitter.com/bad_mr_wolf) | [Github](https://github.com/domdelorenzo)
 
@@ -66,7 +68,7 @@ Refer to the project's [Trello page](https://trello.com/b/08z798iH/markdown-edit
 
 ### ***Containerization & Deployment***
 
-- [ ] Deployment (Heroku)
+- [x] Deployment (Heroku) [https://kerouac-app.herokuapp.com/](https://kerouac-app.herokuapp.com/)
 
 ## ***Quick Start***
 
